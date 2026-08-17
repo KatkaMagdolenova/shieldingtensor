@@ -1,8 +1,4 @@
 """
-shielding_pda_bridge_explained.py
-
-Extremely commented and report-oriented version of the pNMR shielding script.
-
 PURPOSE
 =======
 The script post-processes ReSpect output files for an S = 1/2 paramagnetic
@@ -101,15 +97,6 @@ THEORY ROADMAP USED IN THE CODE
 
    because the iso--ani and ani--iso cross terms have zero trace.
 
-IMPORTANT LIMITATION
-====================
-If ReSpect was run with adjusted speed of light c_adjust != 1, then this script
-is still internally consistent, but it post-processes the tensors that ReSpect
-actually produced. For example, if c_adjust = 0.5, the results are
-
-       delta[ g(c/2), A(c/2) ]
-
-not physical-c values. This cannot be fixed by a simple Python rescaling.
 """
 
 from __future__ import annotations
