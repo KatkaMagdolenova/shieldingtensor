@@ -188,16 +188,6 @@ other tools (e.g. a ReSpect-based post-processor using g/A tensors in MHz)
 report the NMR SHIFT delta = -sigma instead. Settings.cube_sign lets you
 flip the sign if you need to compare the two conventions directly.
 
-WHAT IS "NEW PHYSICS" VS. "ALREADY VALIDATED"
------------------------------------------------
-Everything up to and including "sigma_Curie(u,v)" above is exactly what the
-rest of the script already computes and checks (FC+SD+LI=TOTAL etc.). The
-point-dipole extrapolation to a field point (the T(R)/chi0 formula) is the
-one genuinely NEW piece of physics added for the cube; it is the standard
-long-distance/point-dipole limit, but it is only as good as the 1/R
-expansion itself, and it is a diagnostic/visualisation aid, not a
-recomputation of the ab-initio Curie shift at the real nuclear positions
-(those keep coming from section [2]/[3] exactly as before).
 """
 
 import argparse
