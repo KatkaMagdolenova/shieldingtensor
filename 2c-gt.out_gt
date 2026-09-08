@@ -1,0 +1,561 @@
+##############################################################################
+                              Environment setting
+##############################################################################
+
+ Job setting:
+    
+    Call arguments   are    --nt=16 --gt --start=2c --inp=gt --scratch=/scratch/uachstno 
+    Input file name   is   gt.inp
+    Binary  directory is   /home/uachstno/repo/ReSpect-mDKS-master/build-intel-release-omp
+    Work    directory is   /home/uachstno/APPL/C10H11/
+    Scratch directory is   /scratch/uachstno/tmp453127.fcl95964.uachstno
+    Machine name      is   thror
+    OMP stack memory size  2048m
+    OMP parallel job with  16 threads
+    Output  file will be   /home/uachstno/APPL/C10H11/2c-gt.out_gt
+
+
+ System setting:
+
+    real-time non-blocking time  (microseconds, -R) unlimited
+    core file size              (blocks, -c) 0
+    data seg size               (kbytes, -d) unlimited
+    scheduling priority                 (-e) 0
+    file size                   (blocks, -f) unlimited
+    pending signals                     (-i) 124338
+    max locked memory           (kbytes, -l) 3998044
+    max memory size             (kbytes, -m) unlimited
+    open files                          (-n) 1073741816
+    pipe size                (512 bytes, -p) 8
+    POSIX message queues         (bytes, -q) 819200
+    real-time priority                  (-r) 0
+    stack size                  (kbytes, -s) unlimited
+    cpu time                   (seconds, -t) unlimited
+    max user processes                  (-u) 124338
+    virtual memory              (kbytes, -v) unlimited
+    file locks                          (-x) unlimited
+    omp_thread_limit:
+    omp_stacksize:2048m
+    
+
+##############################################################################
+                               Program ReSpect
+##############################################################################
+::
+
+ Version:       5.3.0 (2024)
+ Released:      beta (in testing period)
+
+ Branch:        master
+ Commit hash:   eaee4ad37
+ Commit author: James Asher
+ Commit date:   Fri Jun 5 12:48:00 2026 +0200
+
+ Webpage:       http://www.respectprogram.org 
+ Copyright:     ReSpect is distributed as proprietary software at no cost
+                and is currently available as OpenMP parallel static binaries
+                for Linux OS and x86_64 architecture at the program webpage.
+                The program is limited to non-commercial, academic, and non-profit
+                private use and its further copy, modification, redistribution or
+                sublicense in whole or in part is not permitted.
+                The specific terms of use are available at:
+                http://www.respectprogram.org/download.html.
+                The program is distributed AS IS in a hope it becomes useful.
+                The experimental nature of the program means that authors accept
+                no responsibility for the correctness of results nor fitness for
+                a particular purpose.
+
+ Reference(s):  If results obtained with ReSpect are published in the scientific
+                literature or publicly accessible reports, the users shall reference
+                the program as:
+
+                ReSpect: Relativistic Spectroscopy DFT Program Package
+                M. Repisky, S. Komorovsky, M. Kadek, L. Konecny, U. Ekstrom,
+                E. Malkin, M. Kaupp, K. Ruud, O. L. Malkina, and V. G. Malkin,
+                J. Chem. Phys. 152, 184101 (2020) [DOI: https://doi.org/10.1063/5.0005094]
+                Version: 5.3.0 (2024), Program webpage: http://www.respectprogram.org
+
+                Using specific theoretical methods included in ReSpect may require citing
+                additional articles, as described in this output file as "REQUIRED REFERENCES".
+
+
+ -------
+ Authors
+ -------
+ Repisky Michal
+ Komorovsky Stanislav
+
+
+ --------
+ Founders
+ --------
+ Ruud Kenneth
+ Kaupp Martin
+ Malkina Olga L.
+ Malkin Vladimir G.
+
+
+ ------------
+ Contributors
+ ------------
+ Bast Radovan         - AutoCMake library
+ Di Remigio Roberto   - PCMSolver library
+ Ekstrom Ulf          - XCFun library
+ Joosten Marc         - NQCC/EFG library
+ Kadek Marius         - solid-state pSCF library
+                      - real-time TDDFT (RT-TDDFT) library
+ Knecht Stefan        - pilot MPI parallelization
+ Konecny Lukas        - real-time TDDFT (RT-TDDFT) library
+                      - damped-response TDDFT (DR-TDDFT) library
+ Malkin Elena         - one-component molecular properties
+                      - finite size nucleus and magnetic moment models
+ Malkin-Ondik Irina   - Douglas-Kroll-Hess (DKH) Hamiltonians
+ Moitra Torsha        - transient (pump-probe) absorption spectroscopy
+
+
+
+
+##############################################################################
+                    Configuration, build, and runtime info
+##############################################################################
+::
+
+ -----------------------------------
+ Configuration and build information
+ -----------------------------------
+
+ Who compiled           | uachstno
+ Compiled on server     | thror
+ Operating system       | Linux-6.14.0-37-generic
+ CMake version          | 3.31.6
+ CMake generator        | Unix Makefiles
+ CMake build type       | release
+ Configuration time     | 2026-06-22 09:36:53.601937
+ Python version         | 
+ Fortran compiler       | /opt/intel/oneapi-23/compiler/2023.1.0/linux/bin/intel64/ifort
+ Fortran compiler flags |  -w -fpp -assume byterecl -qopenmp -O2 -march=native -xW -ip
+ C compiler             | /usr/bin/gcc
+ C compiler flags       |  -std=c99 -DRESTRICT=restrict -DFUNDERSCORE=1 -DHAVE_NO_LSEEK64 -ffloat-store -Wno-unused -m64 -fopenmp -O2 -ffast-math -funroll-loops -ftree-vectorize
+ C++ compiler           | /usr/bin/g++
+ C++ compiler flags     |  -Wall -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -fno-rtti -fno-exceptions -m64 -fopenmp -O3 -mtune=native -DNDEBUG
+ Static linking         | False
+ MPI parallelization    | False
+ OMP parallelization    | True
+ Math libraries         | -Wl,--start-group;/opt/intel/oneapi-23/mkl/2023.1.0/lib/intel64/libmkl_lapack95_lp64.a;/opt/intel/oneapi-23/mkl/2023.1.0/lib/intel64/libmkl_intel_lp64.so;-qopenmp;-Wl,--end-group;-Wl,--start-group;/opt/intel/oneapi-23/mkl/2023.1.0/lib/intel64/libmkl_intel_lp64.so;/opt/intel/oneapi-23/mkl/2023.1.0/lib/intel64/libmkl_intel_thread.so;/opt/intel/oneapi-23/mkl/2023.1.0/lib/intel64/libmkl_core.so;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libm.so;-qopenmp;-Wl,--end-group
+ Explicit libraries     | unknown
+
+
+ ------------
+ Runtime info
+ ------------
+
+ Parallelization model: OpenMP
+   Master process has 16 threads of total 32
+
+ Initial time:
+    9:43:52, 22 June, 2026
+
+
+##############################################################################
+                            Input processing info
+##############################################################################
+::
+
+ ----------
+ Input file
+ ----------
+
+ gt:
+   print-level : long-debug
+   gauge       : center-of-mass
+
+
+ ----------------
+ Input processing
+ ----------------
+
+ ... print level: long-debug
+
+ ... reading in gauge origin position 
+
+
+
+##############################################################################
+                             REQUIRED REFERENCES
+##############################################################################
+
+ Description of the relativistic four-component DFT method for calculation
+ of the electronic g-tensor is presented for the first time in Ref [1]
+ and is further validated in Ref [2].
+
+ [1] M. Repisky, S. Komorovsky, E. Malkin, O.L. Malkina,
+     and V.G. Malkin, Chem. Phys. Lett. 488, 94-97 (2010).
+     [DOI: https://doi.org/10.1016/j.cplett.2010.01.077]
+
+ [2] P. J. Cherry, S. Komorovsky, V. G. Malkin,
+     and O. L. Malkina, Mol. Phys. 115, 75-89 (2017).
+     [DOI: https://doi.org/10.1080/00268976.2016.1191688]
+
+ XCFun: a library of DFT exchange-correlation functionals
+
+ [3] U. Ekström, et al., J. Chem. Theory Comput. 6, 1971-1980 (2010)
+     [DOI: https://doi.org/10.1021/ct100117s]
+
+
+=============
+Input setting
+=============
+::
+
+ Common gauge origin (CGO) method
+ Hamiltonian amfX2C
+ Use canonical molecular orbitals
+ Speed of light is adjusted   0.5000 times
+ Speed of light is now:      68.5180
+ Number of occupied MOs : 71
+ Long debugging info on output
+
+
+
+Common gauge origin [A]
+-----------------------
+::
+
+ GO is in the center of mass of the system
+ GO =      0.0353318     0.0518732     0.0000000
+
+
+
+Molecular geometry [A]
+----------------------
+::
+
+   atom    label    atomic mass                Cartesian coordinates
+ ----------------------------------------------------------------------------- 
+
+    C        1      12.00000000      -2.4014964     -5.0119444      0.0000000
+    C        2      12.00000000      -2.3608120     -3.6761744      0.0000000
+    C        3      12.00000000      -1.1510400     -2.8668817      0.0000000
+    C        4      12.00000000      -1.1575999     -1.4958184      0.0000000
+    C        5      12.00000000       0.0231728     -0.6807444      0.0000000
+    C        6      12.00000000       0.0149458      0.6936738      0.0000000
+    C        7      12.00000000       1.1947063      1.5097131      0.0000000
+    C        8      12.00000000       1.1892153      2.8813230      0.0000000
+    H        9       1.00782503      -3.3126410     -3.1177210      0.0000000
+    H       10       1.00782503      -0.1893034     -3.3983374      0.0000000
+    H       11       1.00782503      -2.1272311     -0.9749303      0.0000000
+    H       12       1.00782503       0.9931351     -1.2006620      0.0000000
+    H       13       1.00782503      -0.9552397      1.2133168      0.0000000
+    H       14       1.00782503       2.1643074      0.9884677      0.0000000
+    H       15       1.00782503       0.2225738      3.4072520      0.0000000
+    H       16       1.00782503      -1.6856154     -5.8368549      0.0000000
+    C       17      12.00000000       2.3814697      3.6973314      0.0000000
+    H       18       1.00782503       3.3420437      3.1609589      0.0000000
+    C       19      12.00000000       2.3834166      5.0544524      0.0000000
+    H       20       1.00782503       1.4478957      5.6269830      0.0000000
+    H       21       1.00782503       3.3146857      5.6291938      0.0000000
+
+
+
+Atomic orbital basis
+--------------------
+::
+
+ atom  label     prim    cont     orbital basis set details     
+ ---------------------------------------------------------------
+  C      1         26      26     [9s4p1d]  ucc-pvdz
+  C      2         26      26     [9s4p1d]  ucc-pvdz
+  C      3         26      26     [9s4p1d]  ucc-pvdz
+  C      4         26      26     [9s4p1d]  ucc-pvdz
+  C      5         26      26     [9s4p1d]  ucc-pvdz
+  C      6         26      26     [9s4p1d]  ucc-pvdz
+  C      7         26      26     [9s4p1d]  ucc-pvdz
+  C      8         26      26     [9s4p1d]  ucc-pvdz
+  H      9          7       7     [4s1p]    ucc-pvdz
+  H     10          7       7     [4s1p]    ucc-pvdz
+  H     11          7       7     [4s1p]    ucc-pvdz
+  H     12          7       7     [4s1p]    ucc-pvdz
+  H     13          7       7     [4s1p]    ucc-pvdz
+  H     14          7       7     [4s1p]    ucc-pvdz
+  H     15          7       7     [4s1p]    ucc-pvdz
+  H     16          7       7     [4s1p]    ucc-pvdz
+  C     17         26      26     [9s4p1d]  ucc-pvdz
+  H     18          7       7     [4s1p]    ucc-pvdz
+  C     19         26      26     [9s4p1d]  ucc-pvdz
+  H     20          7       7     [4s1p]    ucc-pvdz
+  H     21          7       7     [4s1p]    ucc-pvdz
+
+ Total number of           GTO shells =     195
+ Total number of spherical GTO functions =  337
+ Total number of cartesian GTO functions =  347
+
+
+
+##############################################################################
+                                   g-tensor
+##############################################################################
+::
+
+  Analyze Kramers overlaps for spin X
+  ===================================
+
+   MO_i    MO_j  |< K MO_i | MO_j >|
+  ----------------------------------
+         occupied/occupied          
+  ----------------------------------
+     1      10         0.996
+     2       4         0.978
+     3       5         0.979
+     6       7         0.959
+     8       9         0.739
+    11      12         0.745
+    13      14         0.952
+    15      18         0.710
+    16      17         0.726
+    19      20         1.000
+    21      22         0.995
+    23      24         0.989
+    25      26         0.986
+    27      28         0.985
+    29      30         0.987
+    31      32         0.986
+    33      34         0.964
+    35      36         0.979
+    37      38         0.906
+    39      40         0.898
+    41      42         0.992
+    43      44         0.993
+    45      46         0.989
+    47      48         0.990
+    49      50         0.993
+    51      52         0.988
+    53      54         0.994
+    55      56         0.988
+    57      58         0.998
+    59      60         0.995
+    61      62         1.000
+    63      64         0.996
+    65      66         0.993
+    67      68         0.991
+    70      71         0.990
+  ----------------------------------
+     occupied(SOMO)/virtual(SUMO)   
+  ----------------------------------
+    69      72         0.987
+  ----------------------------------
+          virtual/virtual           
+  ----------------------------------
+    73      74         0.989
+    75      76         0.990
+    77      78         0.991
+    79      80         0.998
+    81      82         0.991
+    83      84         0.995
+    85      86         0.989
+    87      88         0.998
+    89      90         0.959
+    91      92         0.965
+
+
+  Analyze Kramers overlaps for spin Y
+  ===================================
+
+   MO_i    MO_j  |< K MO_i | MO_j >|
+  ----------------------------------
+         occupied/occupied          
+  ----------------------------------
+     1      10         0.996
+     2       4         0.978
+     3       5         0.979
+     6       7         0.959
+     8       9         0.739
+    11      12         0.745
+    13      14         0.952
+    15      18         0.710
+    16      17         0.726
+    19      20         1.000
+    21      22         0.995
+    23      24         0.989
+    25      26         0.986
+    27      28         0.985
+    29      30         0.987
+    31      32         0.986
+    33      34         0.964
+    35      36         0.979
+    37      38         0.906
+    39      40         0.898
+    41      42         0.992
+    43      44         0.993
+    45      46         0.989
+    47      48         0.990
+    49      50         0.993
+    51      52         0.988
+    53      54         0.994
+    55      56         0.988
+    57      58         0.998
+    59      60         0.995
+    61      62         1.000
+    63      64         0.996
+    65      66         0.993
+    67      68         0.991
+    70      71         0.990
+  ----------------------------------
+     occupied(SOMO)/virtual(SUMO)   
+  ----------------------------------
+    69      72         0.987
+  ----------------------------------
+          virtual/virtual           
+  ----------------------------------
+    73      74         0.989
+    75      76         0.990
+    77      78         0.991
+    79      80         0.998
+    81      82         0.991
+    83      84         0.995
+    85      86         0.989
+    87      88         0.998
+    89      90         0.959
+    91      92         0.965
+
+
+  Analyze Kramers overlaps for spin Z
+  ===================================
+
+   MO_i    MO_j  |< K MO_i | MO_j >|
+  ----------------------------------
+         occupied/occupied          
+  ----------------------------------
+     1      10         0.996
+     2       4         0.978
+     3       5         0.979
+     6       7         0.959
+     8       9         0.739
+    11      12         0.745
+    13      14         0.952
+    15      18         0.710
+    16      17         0.726
+    19      20         1.000
+    21      22         0.995
+    23      24         0.989
+    25      26         0.986
+    27      28         0.985
+    29      30         0.987
+    31      32         0.986
+    33      34         0.964
+    35      36         0.979
+    37      38         0.906
+    39      40         0.898
+    41      42         0.992
+    43      44         0.993
+    45      46         0.989
+    47      48         0.990
+    49      50         0.993
+    51      52         0.988
+    53      54         0.994
+    55      56         0.988
+    57      58         0.998
+    59      60         0.995
+    61      62         1.000
+    63      64         0.996
+    65      66         0.993
+    67      68         0.991
+    70      71         0.990
+  ----------------------------------
+     occupied(SOMO)/virtual(SUMO)   
+  ----------------------------------
+    69      72         0.987
+  ----------------------------------
+          virtual/virtual           
+  ----------------------------------
+    73      74         0.989
+    75      76         0.990
+    77      78         0.991
+    79      80         0.998
+    81      82         0.991
+    83      84         0.995
+    85      86         0.989
+    87      88         0.998
+    89      90         0.959
+    91      92         0.965
+
+
+
+                   Tensor components of g-tensor
+                   =============================
+
+  Spin-Zeeman term:
+        2.0015517951       -0.0004650990       -0.0000000000
+        0.0004834922        2.0015772928       -0.0000000000
+        0.0000000000        0.0000000000        2.0015576169
+
+  Orbital-Zeeman term:
+       -0.0011479930        0.0003163015        0.0000000000
+        0.0013908081       -0.0015541294        0.0000000000
+       -0.0000000000       -0.0000000000        0.0026564804
+
+  Relativistic term:
+        0.0019830352       -0.0011927793        0.0000000000
+       -0.0007791601        0.0007833469       -0.0000000000
+       -0.0000000000       -0.0000000000        0.0015806101
+
+  g(B,S):
+        2.0023868373       -0.0013415768        0.0000000000
+        0.0010951402        2.0008065103        0.0000000000
+        0.0000000000        0.0000000000        2.0057947073
+
+  G(B,B) = g*g^T:
+        4.0095548462       -0.0004913412        0.0000000000
+       -0.0004913412        4.0032278909        0.0000000000
+        0.0000000000        0.0000000000        4.0232124078
+
+                    Principal values of the g-tensor
+                    ================================
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  g_11               2.000797          -0.0770   -0.9970    0.0000
+  g_22               2.002397           0.9970   -0.0770   -0.0000
+  g_33               2.005795           0.0000    0.0000    1.0000
+  g_iso              2.002996
+ ---------------------------------------------------------------------
+  Determinant of the g-tensor:   8.04E+00
+ ---------------------------------------------------------------------
+
+
+                  Principal values of the g-shift [ppt]
+                  =====================================
+              g-shift = (g-value - 2.0023193044) * 1000
+
+  Component         g-shift                  Principal Axes 
+ ---------------------------------------------------------------------
+  g_11              -1.521973          -0.0770   -0.9970    0.0000
+  g_22               0.077453           0.9970   -0.0770   -0.0000
+  g_33               3.475403           0.0000    0.0000    1.0000
+  g_iso              0.676961
+ ---------------------------------------------------------------------
+
+
+
+ ***************************************************
+ * Well, here we are. How does it look for you ??? *
+ ***************************************************
+
+ Total user time: 0.4s
+
+
+
+##############################################################################
+                              Finalization info
+##############################################################################
+ 
+*M*  rank =   0   top mem =           132.380 MB   sub = kramers__analyze_pairs   arr = KSC
+
+ Final time:
+    9:43:53, 22 June, 2026
+
+ Successful termination of ReSpect!
+
+
+real	0m0.446s
+user	0m6.466s
+sys	0m0.260s

@@ -1,0 +1,4035 @@
+##############################################################################
+                              Environment setting
+##############################################################################
+
+ Job setting:
+    
+    Call arguments   are    --nt=16 --hfcc --start=2c --inp=hfs --scratch=/scratch/uachstno 
+    Input file name   is   hfs.inp
+    Binary  directory is   /home/uachstno/repo/ReSpect-mDKS-master/build-intel-release-omp
+    Work    directory is   /home/uachstno/APPL/C10H11/
+    Scratch directory is   /scratch/uachstno/tmp453147.x8bn7dsa.uachstno
+    Machine name      is   thror
+    OMP stack memory size  2048m
+    OMP parallel job with  16 threads
+    Output  file will be   /home/uachstno/APPL/C10H11/2c-hfs.out_hfcc
+
+
+ System setting:
+
+    real-time non-blocking time  (microseconds, -R) unlimited
+    core file size              (blocks, -c) 0
+    data seg size               (kbytes, -d) unlimited
+    scheduling priority                 (-e) 0
+    file size                   (blocks, -f) unlimited
+    pending signals                     (-i) 124338
+    max locked memory           (kbytes, -l) 3998044
+    max memory size             (kbytes, -m) unlimited
+    open files                          (-n) 1073741816
+    pipe size                (512 bytes, -p) 8
+    POSIX message queues         (bytes, -q) 819200
+    real-time priority                  (-r) 0
+    stack size                  (kbytes, -s) unlimited
+    cpu time                   (seconds, -t) unlimited
+    max user processes                  (-u) 124338
+    virtual memory              (kbytes, -v) unlimited
+    file locks                          (-x) unlimited
+    omp_thread_limit:
+    omp_stacksize:2048m
+    
+
+##############################################################################
+                               Program ReSpect
+##############################################################################
+::
+
+ Version:       5.3.0 (2024)
+ Released:      beta (in testing period)
+
+ Branch:        master
+ Commit hash:   eaee4ad37
+ Commit author: James Asher
+ Commit date:   Fri Jun 5 12:48:00 2026 +0200
+
+ Webpage:       http://www.respectprogram.org 
+ Copyright:     ReSpect is distributed as proprietary software at no cost
+                and is currently available as OpenMP parallel static binaries
+                for Linux OS and x86_64 architecture at the program webpage.
+                The program is limited to non-commercial, academic, and non-profit
+                private use and its further copy, modification, redistribution or
+                sublicense in whole or in part is not permitted.
+                The specific terms of use are available at:
+                http://www.respectprogram.org/download.html.
+                The program is distributed AS IS in a hope it becomes useful.
+                The experimental nature of the program means that authors accept
+                no responsibility for the correctness of results nor fitness for
+                a particular purpose.
+
+ Reference(s):  If results obtained with ReSpect are published in the scientific
+                literature or publicly accessible reports, the users shall reference
+                the program as:
+
+                ReSpect: Relativistic Spectroscopy DFT Program Package
+                M. Repisky, S. Komorovsky, M. Kadek, L. Konecny, U. Ekstrom,
+                E. Malkin, M. Kaupp, K. Ruud, O. L. Malkina, and V. G. Malkin,
+                J. Chem. Phys. 152, 184101 (2020) [DOI: https://doi.org/10.1063/5.0005094]
+                Version: 5.3.0 (2024), Program webpage: http://www.respectprogram.org
+
+                Using specific theoretical methods included in ReSpect may require citing
+                additional articles, as described in this output file as "REQUIRED REFERENCES".
+
+
+ -------
+ Authors
+ -------
+ Repisky Michal
+ Komorovsky Stanislav
+
+
+ --------
+ Founders
+ --------
+ Ruud Kenneth
+ Kaupp Martin
+ Malkina Olga L.
+ Malkin Vladimir G.
+
+
+ ------------
+ Contributors
+ ------------
+ Bast Radovan         - AutoCMake library
+ Di Remigio Roberto   - PCMSolver library
+ Ekstrom Ulf          - XCFun library
+ Joosten Marc         - NQCC/EFG library
+ Kadek Marius         - solid-state pSCF library
+                      - real-time TDDFT (RT-TDDFT) library
+ Knecht Stefan        - pilot MPI parallelization
+ Konecny Lukas        - real-time TDDFT (RT-TDDFT) library
+                      - damped-response TDDFT (DR-TDDFT) library
+ Malkin Elena         - one-component molecular properties
+                      - finite size nucleus and magnetic moment models
+ Malkin-Ondik Irina   - Douglas-Kroll-Hess (DKH) Hamiltonians
+ Moitra Torsha        - transient (pump-probe) absorption spectroscopy
+
+
+
+
+##############################################################################
+                    Configuration, build, and runtime info
+##############################################################################
+::
+
+ -----------------------------------
+ Configuration and build information
+ -----------------------------------
+
+ Who compiled           | uachstno
+ Compiled on server     | thror
+ Operating system       | Linux-6.14.0-37-generic
+ CMake version          | 3.31.6
+ CMake generator        | Unix Makefiles
+ CMake build type       | release
+ Configuration time     | 2026-06-22 09:36:53.601937
+ Python version         | 
+ Fortran compiler       | /opt/intel/oneapi-23/compiler/2023.1.0/linux/bin/intel64/ifort
+ Fortran compiler flags |  -w -fpp -assume byterecl -qopenmp -O2 -march=native -xW -ip
+ C compiler             | /usr/bin/gcc
+ C compiler flags       |  -std=c99 -DRESTRICT=restrict -DFUNDERSCORE=1 -DHAVE_NO_LSEEK64 -ffloat-store -Wno-unused -m64 -fopenmp -O2 -ffast-math -funroll-loops -ftree-vectorize
+ C++ compiler           | /usr/bin/g++
+ C++ compiler flags     |  -Wall -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -fno-rtti -fno-exceptions -m64 -fopenmp -O3 -mtune=native -DNDEBUG
+ Static linking         | False
+ MPI parallelization    | False
+ OMP parallelization    | True
+ Math libraries         | -Wl,--start-group;/opt/intel/oneapi-23/mkl/2023.1.0/lib/intel64/libmkl_lapack95_lp64.a;/opt/intel/oneapi-23/mkl/2023.1.0/lib/intel64/libmkl_intel_lp64.so;-qopenmp;-Wl,--end-group;-Wl,--start-group;/opt/intel/oneapi-23/mkl/2023.1.0/lib/intel64/libmkl_intel_lp64.so;/opt/intel/oneapi-23/mkl/2023.1.0/lib/intel64/libmkl_intel_thread.so;/opt/intel/oneapi-23/mkl/2023.1.0/lib/intel64/libmkl_core.so;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libm.so;-qopenmp;-Wl,--end-group
+ Explicit libraries     | unknown
+
+
+ ------------
+ Runtime info
+ ------------
+
+ Parallelization model: OpenMP
+   Master process has 16 threads of total 32
+
+ Initial time:
+    9:43:53, 22 June, 2026
+
+
+##############################################################################
+                            Input processing info
+##############################################################################
+::
+
+ ----------
+ Input file
+ ----------
+
+ hfcc:
+   nmm-model   : point
+   print-level : long-debug
+
+
+ ----------------
+ Input processing
+ ----------------
+
+ ... model of magnetic moment distribution of nucleus: point
+
+ ... print level: long-debug
+
+
+
+##############################################################################
+                             REQUIRED REFERENCES
+##############################################################################
+
+ Description of the relativistic four-component DFT method for calculation
+ of hyperfine coupling constants is presented for the first time in Ref [1].
+ In addition this work studies effects of finite size model for both charge
+ and magnetic moment distributions on the hyperfine structure of heavy nuclei.
+
+ [1] E. Malkin, M. Repisky, S. Komorovsky, P. Mach, O.L. Malkina,
+     and V.G. Malkin, J. Chem. Phys. 134, 044111 (2011).
+     [DOI: https://doi.org/10.1063/1.3526263]
+
+ XCFun: a library of DFT exchange-correlation functionals
+
+ [2] U. Ekström, et al., J. Chem. Theory Comput. 6, 1971-1980 (2010)
+     [DOI: https://doi.org/10.1021/ct100117s]
+
+
+##############################################################################
+                                  Input data
+##############################################################################
+::
+
+ -----------------------------------------------------------------------------
+                Setting for the hyperfine structure calculation
+ -----------------------------------------------------------------------------
+ Hamiltonian amfX2C
+ Use canonical molecular orbitals
+ Speed of light is adjusted   0.5000 times
+ Speed of light is now:      68.5180
+ Number of occupied MOs : 71
+ Model of magnetic moment dist. of nucleus --> POINT
+ Long debugging info on output
+
+ -----------------------------------------------------------------------------
+                              Molecular geometry
+ -----------------------------------------------------------------------------
+   atom    label             Cartesian coordinates (in Angstroms)
+
+    C        1         -2.4014964     -5.0119444      0.0000000
+    C        2         -2.3608120     -3.6761744      0.0000000
+    C        3         -1.1510400     -2.8668817      0.0000000
+    C        4         -1.1575999     -1.4958184      0.0000000
+    C        5          0.0231728     -0.6807444      0.0000000
+    C        6          0.0149458      0.6936738      0.0000000
+    C        7          1.1947063      1.5097131      0.0000000
+    C        8          1.1892153      2.8813230      0.0000000
+    H        9         -3.3126410     -3.1177210      0.0000000
+    H       10         -0.1893034     -3.3983374      0.0000000
+    H       11         -2.1272311     -0.9749303      0.0000000
+    H       12          0.9931351     -1.2006620      0.0000000
+    H       13         -0.9552397      1.2133168      0.0000000
+    H       14          2.1643074      0.9884677      0.0000000
+    H       15          0.2225738      3.4072520      0.0000000
+    H       16         -1.6856154     -5.8368549      0.0000000
+    C       17          2.3814697      3.6973314      0.0000000
+    H       18          3.3420437      3.1609589      0.0000000
+    C       19          2.3834166      5.0544524      0.0000000
+    H       20          1.4478957      5.6269830      0.0000000
+    H       21          3.3146857      5.6291938      0.0000000
+
+ ----------------------------------------------------------------------------- 
+   atom    label   Z   isotope    spin      g-factor     atomic mass   active  
+
+    C        1      6     13      0.50     1.40482360    13.00335484      T
+    C        2      6     13      0.50     1.40482360    13.00335484      T
+    C        3      6     13      0.50     1.40482360    13.00335484      T
+    C        4      6     13      0.50     1.40482360    13.00335484      T
+    C        5      6     13      0.50     1.40482360    13.00335484      T
+    C        6      6     13      0.50     1.40482360    13.00335484      T
+    C        7      6     13      0.50     1.40482360    13.00335484      T
+    C        8      6     13      0.50     1.40482360    13.00335484      T
+    H        9      1      1      0.50     5.58569468     1.00782503      T
+    H       10      1      1      0.50     5.58569468     1.00782503      T
+    H       11      1      1      0.50     5.58569468     1.00782503      T
+    H       12      1      1      0.50     5.58569468     1.00782503      T
+    H       13      1      1      0.50     5.58569468     1.00782503      T
+    H       14      1      1      0.50     5.58569468     1.00782503      T
+    H       15      1      1      0.50     5.58569468     1.00782503      T
+    H       16      1      1      0.50     5.58569468     1.00782503      T
+    C       17      6     13      0.50     1.40482360    13.00335484      T
+    H       18      1      1      0.50     5.58569468     1.00782503      T
+    C       19      6     13      0.50     1.40482360    13.00335484      T
+    H       20      1      1      0.50     5.58569468     1.00782503      T
+    H       21      1      1      0.50     5.58569468     1.00782503      T
+
+
+Atomic orbital basis
+--------------------
+::
+
+ atom  label     prim    cont     orbital basis set details     
+ ---------------------------------------------------------------
+  C      1         26      26     [9s4p1d]  ucc-pvdz
+  C      2         26      26     [9s4p1d]  ucc-pvdz
+  C      3         26      26     [9s4p1d]  ucc-pvdz
+  C      4         26      26     [9s4p1d]  ucc-pvdz
+  C      5         26      26     [9s4p1d]  ucc-pvdz
+  C      6         26      26     [9s4p1d]  ucc-pvdz
+  C      7         26      26     [9s4p1d]  ucc-pvdz
+  C      8         26      26     [9s4p1d]  ucc-pvdz
+  H      9          7       7     [4s1p]    ucc-pvdz
+  H     10          7       7     [4s1p]    ucc-pvdz
+  H     11          7       7     [4s1p]    ucc-pvdz
+  H     12          7       7     [4s1p]    ucc-pvdz
+  H     13          7       7     [4s1p]    ucc-pvdz
+  H     14          7       7     [4s1p]    ucc-pvdz
+  H     15          7       7     [4s1p]    ucc-pvdz
+  H     16          7       7     [4s1p]    ucc-pvdz
+  C     17         26      26     [9s4p1d]  ucc-pvdz
+  H     18          7       7     [4s1p]    ucc-pvdz
+  C     19         26      26     [9s4p1d]  ucc-pvdz
+  H     20          7       7     [4s1p]    ucc-pvdz
+  H     21          7       7     [4s1p]    ucc-pvdz
+
+ Total number of           GTO shells =     195
+ Total number of spherical GTO functions =  337
+ Total number of cartesian GTO functions =  347
+
+
+
+##############################################################################
+                         Hyperfine Coupling Constants
+##############################################################################
+::
+
+  Analyze Kramers overlaps for spin X
+  ===================================
+
+   MO_i    MO_j  |< K MO_i | MO_j >|
+  ----------------------------------
+         occupied/occupied          
+  ----------------------------------
+     1      10         0.996
+     2       4         0.978
+     3       5         0.979
+     6       7         0.959
+     8       9         0.739
+    11      12         0.745
+    13      14         0.952
+    15      18         0.710
+    16      17         0.726
+    19      20         1.000
+    21      22         0.995
+    23      24         0.989
+    25      26         0.986
+    27      28         0.985
+    29      30         0.987
+    31      32         0.986
+    33      34         0.964
+    35      36         0.979
+    37      38         0.906
+    39      40         0.898
+    41      42         0.992
+    43      44         0.993
+    45      46         0.989
+    47      48         0.990
+    49      50         0.993
+    51      52         0.988
+    53      54         0.994
+    55      56         0.988
+    57      58         0.998
+    59      60         0.995
+    61      62         1.000
+    63      64         0.996
+    65      66         0.993
+    67      68         0.991
+    70      71         0.990
+  ----------------------------------
+     occupied(SOMO)/virtual(SUMO)   
+  ----------------------------------
+    69      72         0.987
+  ----------------------------------
+          virtual/virtual           
+  ----------------------------------
+    73      74         0.989
+    75      76         0.990
+    77      78         0.991
+    79      80         0.998
+    81      82         0.991
+    83      84         0.995
+    85      86         0.989
+    87      88         0.998
+    89      90         0.959
+    91      92         0.965
+
+
+  Analyze Kramers overlaps for spin Y
+  ===================================
+
+   MO_i    MO_j  |< K MO_i | MO_j >|
+  ----------------------------------
+         occupied/occupied          
+  ----------------------------------
+     1      10         0.996
+     2       4         0.978
+     3       5         0.979
+     6       7         0.959
+     8       9         0.739
+    11      12         0.745
+    13      14         0.952
+    15      18         0.710
+    16      17         0.726
+    19      20         1.000
+    21      22         0.995
+    23      24         0.989
+    25      26         0.986
+    27      28         0.985
+    29      30         0.987
+    31      32         0.986
+    33      34         0.964
+    35      36         0.979
+    37      38         0.906
+    39      40         0.898
+    41      42         0.992
+    43      44         0.993
+    45      46         0.989
+    47      48         0.990
+    49      50         0.993
+    51      52         0.988
+    53      54         0.994
+    55      56         0.988
+    57      58         0.998
+    59      60         0.995
+    61      62         1.000
+    63      64         0.996
+    65      66         0.993
+    67      68         0.991
+    70      71         0.990
+  ----------------------------------
+     occupied(SOMO)/virtual(SUMO)   
+  ----------------------------------
+    69      72         0.987
+  ----------------------------------
+          virtual/virtual           
+  ----------------------------------
+    73      74         0.989
+    75      76         0.990
+    77      78         0.991
+    79      80         0.998
+    81      82         0.991
+    83      84         0.995
+    85      86         0.989
+    87      88         0.998
+    89      90         0.959
+    91      92         0.965
+
+
+  Analyze Kramers overlaps for spin Z
+  ===================================
+
+   MO_i    MO_j  |< K MO_i | MO_j >|
+  ----------------------------------
+         occupied/occupied          
+  ----------------------------------
+     1      10         0.996
+     2       4         0.978
+     3       5         0.979
+     6       7         0.959
+     8       9         0.739
+    11      12         0.745
+    13      14         0.952
+    15      18         0.710
+    16      17         0.726
+    19      20         1.000
+    21      22         0.995
+    23      24         0.989
+    25      26         0.986
+    27      28         0.985
+    29      30         0.987
+    31      32         0.986
+    33      34         0.964
+    35      36         0.979
+    37      38         0.906
+    39      40         0.898
+    41      42         0.992
+    43      44         0.993
+    45      46         0.989
+    47      48         0.990
+    49      50         0.993
+    51      52         0.988
+    53      54         0.994
+    55      56         0.988
+    57      58         0.998
+    59      60         0.995
+    61      62         1.000
+    63      64         0.996
+    65      66         0.993
+    67      68         0.991
+    70      71         0.990
+  ----------------------------------
+     occupied(SOMO)/virtual(SUMO)   
+  ----------------------------------
+    69      72         0.987
+  ----------------------------------
+          virtual/virtual           
+  ----------------------------------
+    73      74         0.989
+    75      76         0.990
+    77      78         0.991
+    79      80         0.998
+    81      82         0.991
+    83      84         0.995
+    85      86         0.989
+    87      88         0.998
+    89      90         0.959
+    91      92         0.965
+
+
+
+=============================
+HFCC FOR NUCLEUS # 1 = Carbon
+=============================
+::
+
+  g-factor           =    1.404824
+  Atomic mass        =   13.003355
+  Atomic mass number =   13
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                            -2.4014964  -5.0119444   0.0000000
+
+  Fermi-contact term (FC):
+      330.0837461702       -0.3524820139        0.0000000001
+        0.3569545500      330.0871556660       -0.0000000001
+        0.0000000016        0.0000000013      330.0889699823
+
+  Paramagnetic spin orbit term (PSO):
+       -0.2717422087        0.2858955125        0.0000000000
+        0.3913259575       -0.9622594974       -0.0000000000
+        0.0000000000       -0.0000000000       -0.5138241963
+
+  Spin dipolar term (SD):
+      102.3962068972       67.0029501227       -0.0000000001
+       66.9431947854      -53.1985679434        0.0000000000
+       -0.0000000002       -0.0000000001      -49.2002208528
+
+  First relativistic term (R1):
+       -2.2473806562        0.0233609438        0.0000000002
+       -0.0087286987       -2.2759264516        0.0000000000
+       -0.0000000001       -0.0000000001       -2.2777075719
+
+  Second relativistic term (R2):
+        0.2156019899        0.0441395640       -0.0000000000
+        0.0459336436        0.1177550306        0.0000000000
+        0.0000000000        0.0000000000        0.1206496709
+
+  a(I,S) [MHz]:
+      430.1764321924       67.0038641292        0.0000000002
+       67.7286802378      273.7681568043       -0.0000000001
+        0.0000000036        0.0000000028      278.2178670313
+
+  A(I,I) = a*a^T:
+   189541.2806220377    47478.8064032235        0.0000017867
+    47478.8064032235    79536.1778067615        0.0000009776
+        0.0000017867        0.0000009776    77405.1815354634
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11            248.753773            0.3486   -0.9373    0.0000
+  a_22            278.217867            0.0000   -0.0000   -1.0000
+  a_33            455.191190            0.9373    0.3486    0.0000
+  a_iso           327.387610
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   3.15E+07
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11            248.753586            0.3481   -0.9375    0.0000
+  a_22            278.217867            0.0000   -0.0000   -1.0000
+  a_33            455.191003            0.9375    0.3481    0.0000
+  a_iso           327.387485
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC       330.087          330.085          330.089          330.086
+  PSO       -0.583           -1.100           -0.514           -0.134
+  SD        -0.001          -78.055          -49.200          127.253
+  R1        -2.267           -2.277           -2.278           -2.246
+  R2         0.151            0.100            0.121            0.233
+  REL       -2.116           -2.177           -2.157           -2.013
+  SUM      327.387          248.754          278.218          455.191
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+      333.7356602171       -0.4723727860       -0.0000000003
+        0.2192941962      334.0347810787       -0.0000000002
+        0.0000000017        0.0000000013      334.0325968143
+
+  LL contribution to FC:
+      333.8522525621       -0.3435568972       -0.0000000003
+        0.3480815405      333.8557039221       -0.0000000002
+        0.0000000017        0.0000000013      333.8575196346
+
+  SS contribution to FC:
+       -0.1165923449       -0.1288158888        0.0000000000
+       -0.1287873443        0.1790771566        0.0000000000
+        0.0000000000        0.0000000000        0.1750771797
+
+  Gordon decomposition, PSO term:
+       -3.8199805353        0.3643525206        0.0000000000
+        0.4603780815       -4.6823514706       -0.0000000000
+       -0.0000000000       -0.0000000000       -4.2251337217
+
+  LL contribution to PSO:
+       -0.3286717181        0.3485204117        0.0000000000
+        0.4516859388       -1.1639648494       -0.0000000000
+        0.0000000000       -0.0000000000       -0.7111007983
+
+  SS contribution to PSO:
+       -3.4913088172        0.0158321088       -0.0000000000
+        0.0086921427       -3.5183866212        0.0000000000
+       -0.0000000000       -0.0000000000       -3.5140329234
+
+  Gordon decomposition, SD term:
+       99.2617498282       67.1469097942       -0.0000000001
+       67.0803883197      -56.6586763262       -0.0000000000
+       -0.0000000002       -0.0000000001      -52.6584192396
+
+  LL contribution to SD:
+      102.5720252756       67.1175907417       -0.0000000001
+       67.0581993410      -53.2885697269       -0.0000000000
+       -0.0000000002       -0.0000000001      -49.2868604932
+
+  SS contribution to SD:
+       -3.3102754474        0.0293190525       -0.0000000000
+        0.0221889787       -3.3701065993        0.0000000000
+       -0.0000000000       -0.0000000000       -3.3715587464
+
+  Gordon decomposition, a(I,S) [MHz]:
+      429.1774295100       67.0388895287       -0.0000000004
+       67.7600605974      272.6937532819       -0.0000000002
+        0.0000000015        0.0000000011      277.1490438530
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11            247.666649            0.3481   -0.9375    0.0000
+  a_22            277.149044            0.0000   -0.0000   -1.0000
+  a_33            454.204534            0.9375    0.3481    0.0000
+  a_iso           326.340076
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC       333.934          334.081          334.033          333.689
+  PSO       -4.242           -4.847           -4.225           -3.655
+  SD        -3.352          -81.567          -52.658          124.171
+  SUM      326.340          247.667          277.149          454.205
+ ---------------------------------------------------------------------
+
+
+=============================
+HFCC FOR NUCLEUS # 2 = Carbon
+=============================
+::
+
+  g-factor           =    1.404824
+  Atomic mass        =   13.003355
+  Atomic mass number =   13
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                            -2.3608120  -3.6761744   0.0000000
+
+  Fermi-contact term (FC):
+       -5.4789053674        0.3556735294        0.0000000007
+       -0.3563181409       -5.5097314316       -0.0000000001
+        0.0000000000        0.0000000000       -5.4808598796
+
+  Paramagnetic spin orbit term (PSO):
+       -0.0367136636        0.2670770886        0.0000000000
+        0.0780539060       -0.0935888877        0.0000000000
+       -0.0000000000       -0.0000000000        0.0630425648
+
+  Spin dipolar term (SD):
+        3.5226865620        3.4758646628        0.0000000002
+        3.5211477452       15.0431600159        0.0000000003
+        0.0000000001        0.0000000002      -18.5624173226
+
+  First relativistic term (R1):
+        0.0473381652        0.0005889377       -0.0000000000
+        0.0007129682        0.0453207170        0.0000000001
+       -0.0000000003       -0.0000000003        0.0438344463
+
+  Second relativistic term (R2):
+       -0.0100576971        0.0008593809       -0.0000000000
+        0.0028040302       -0.0064033955       -0.0000000000
+        0.0000000000        0.0000000000       -0.0208055482
+
+  a(I,S) [MHz]:
+       -1.9556520009        4.1000635994        0.0000000008
+        3.2464005087        9.4787570182        0.0000000003
+       -0.0000000014        0.0000000003      -23.9572057393
+
+  A(I,I) = a*a^T:
+       20.6350962677       32.5146769672       -0.0000000163
+       32.5146769672      100.3859508727       -0.0000000083
+       -0.0000000163       -0.0000000083      573.9477068362
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              3.009826            0.9421   -0.3354    0.0000
+  a_22             10.581210            0.3354    0.9421    0.0000
+  a_33             23.957206           -0.0000   -0.0000    1.0000
+  a_iso            12.516080
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   7.63E+02
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11            -23.957206            0.0000   -0.0000    1.0000
+  a_22             -3.033965           -0.9595    0.2817    0.0000
+  a_33             10.557070            0.2817    0.9595    0.0000
+  a_iso            -5.478034
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -5.490           -5.481           -5.481           -5.507
+  PSO       -0.022            0.063           -0.135            0.004
+  SD         0.001          -18.562            2.546           16.020
+  R1         0.045            0.044            0.047            0.046
+  R2        -0.012           -0.021           -0.011           -0.006
+  REL        0.033            0.023            0.036            0.040
+  SUM       -5.478          -23.957           -3.034           10.557
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+       -5.5617434182        0.3559407914        0.0000000005
+       -0.3691371213       -5.5963611790       -0.0000000002
+        0.0000000006        0.0000000009       -5.5292685081
+
+  LL contribution to FC:
+       -5.5442481221        0.3622024524        0.0000000005
+       -0.3628593187       -5.5754367764       -0.0000000002
+        0.0000000006        0.0000000009       -5.5461738164
+
+  SS contribution to FC:
+       -0.0174952962       -0.0062616610       -0.0000000000
+       -0.0062778026       -0.0209244026       -0.0000000000
+       -0.0000000000       -0.0000000000        0.0169053082
+
+  Gordon decomposition, PSO term:
+        0.0460049310        0.2635241406        0.0000000000
+        0.0834431801       -0.0117534411        0.0000000000
+        0.0000000000        0.0000000000        0.1273462303
+
+  LL contribution to PSO:
+       -0.0184676094        0.2693078990        0.0000000000
+        0.0816804089       -0.0754291810        0.0000000000
+       -0.0000000000       -0.0000000000        0.0639232281
+
+  SS contribution to PSO:
+        0.0644725404       -0.0057837583       -0.0000000000
+        0.0017627712        0.0636757399        0.0000000000
+        0.0000000000        0.0000000000        0.0634230022
+
+  Gordon decomposition, SD term:
+        3.5822288740        3.4806291036        0.0000000002
+        3.5328416572       15.1122109312        0.0000000003
+        0.0000000002        0.0000000002      -18.5423873665
+
+  LL contribution to SD:
+        3.5305940502        3.4816394396        0.0000000002
+        3.5268738244       15.0588041353        0.0000000003
+        0.0000000001        0.0000000002      -18.5859534305
+
+  SS contribution to SD:
+        0.0516348238       -0.0010103360       -0.0000000000
+        0.0059678328        0.0534067959        0.0000000000
+        0.0000000000        0.0000000000        0.0435660640
+
+  Gordon decomposition, a(I,S) [MHz]:
+       -1.9335096132        4.1000940357        0.0000000007
+        3.2471477160        9.5040963110        0.0000000001
+        0.0000000008        0.0000000011      -23.9443096443
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11            -23.944310           -0.0000   -0.0000    1.0000
+  a_22             -3.011779            0.9595   -0.2816    0.0000
+  a_33             10.582366            0.2816    0.9595    0.0000
+  a_iso            -5.457908
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -5.562           -5.529           -5.561           -5.597
+  PSO        0.054            0.127           -0.052            0.087
+  SD         0.051          -18.542            2.601           16.093
+  SUM       -5.458          -23.944           -3.012           10.582
+ ---------------------------------------------------------------------
+
+
+=============================
+HFCC FOR NUCLEUS # 3 = Carbon
+=============================
+::
+
+  g-factor           =    1.404824
+  Atomic mass        =   13.003355
+  Atomic mass number =   13
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                            -1.1510400  -2.8668817   0.0000000
+
+  Fermi-contact term (FC):
+       86.1032590782       -0.0072033193        0.0000000002
+        0.0096024963       86.1142894463        0.0000000001
+        0.0000000025        0.0000000023       86.1053586918
+
+  Paramagnetic spin orbit term (PSO):
+       -0.1185008079        0.0685804705       -0.0000000000
+        0.0802384456       -0.0923222617        0.0000000000
+        0.0000000000        0.0000000000       -0.0587238308
+
+  Spin dipolar term (SD):
+       -0.6618006334        8.0689878973        0.0000000000
+        8.0573498014       -0.3187742067        0.0000000001
+        0.0000000000        0.0000000001        0.9784268173
+
+  First relativistic term (R1):
+       -0.5844409483        0.0015544367        0.0000000000
+        0.0006522643       -0.5841743289        0.0000000002
+        0.0000000000        0.0000000001       -0.5835878595
+
+  Second relativistic term (R2):
+        0.0168312621        0.0043561931        0.0000000000
+        0.0048930130        0.0161825569        0.0000000000
+        0.0000000000        0.0000000000        0.0180108092
+
+  a(I,S) [MHz]:
+       84.7553479507        8.1362756783        0.0000000002
+        8.1527360206       85.1352012061        0.0000000004
+        0.0000000023        0.0000000021       86.4594846276
+
+  A(I,I) = a*a^T:
+     7249.6679881542     1383.6714451157        0.0000002287
+     1383.6714451157     7314.4695890178        0.0000002307
+        0.0000002287        0.0000002307     7475.2424820641
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             76.798555            0.7153   -0.6988   -0.0000
+  a_22             86.459485            0.0000    0.0000   -1.0000
+  a_33             93.091995            0.6988    0.7153    0.0000
+  a_iso            85.450012
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   6.18E+05
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             76.798555            0.7153   -0.6988   -0.0000
+  a_22             86.459485            0.0000    0.0000   -1.0000
+  a_33             93.091995            0.6988    0.7153    0.0000
+  a_iso            85.450011
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        86.108           86.107           86.105           86.110
+  PSO       -0.090           -0.180           -0.059           -0.031
+  SD        -0.001           -8.555            0.978            7.575
+  R1        -0.584           -0.585           -0.584           -0.583
+  R2         0.017            0.012            0.018            0.021
+  REL       -0.567           -0.574           -0.566           -0.562
+  SUM       85.450           76.799           86.459           93.092
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+       87.0938127801       -0.0214231016        0.0000000001
+       -0.0044925995       87.1050798652       -0.0000000002
+        0.0000000022        0.0000000019       87.0912959991
+
+  LL contribution to FC:
+       87.0833373434       -0.0072498926        0.0000000001
+        0.0096813194       87.0944947928       -0.0000000002
+        0.0000000022        0.0000000019       87.0854646316
+
+  SS contribution to FC:
+        0.0104754367       -0.0141732090       -0.0000000000
+       -0.0141739188        0.0105850724       -0.0000000000
+       -0.0000000000       -0.0000000000        0.0058313675
+
+  Gordon decomposition, PSO term:
+       -1.0429244440        0.0765541579       -0.0000000000
+        0.0881214874       -1.0188078183       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.9807047060
+
+  LL contribution to PSO:
+       -0.1362514626        0.0752255640       -0.0000000000
+        0.0869697007       -0.1103816098        0.0000000000
+        0.0000000000        0.0000000000       -0.0741976233
+
+  SS contribution to PSO:
+       -0.9066729814        0.0013285939       -0.0000000000
+        0.0011517868       -0.9084262085       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.9065070827
+
+  Gordon decomposition, SD term:
+       -1.5533791652        8.0847218951        0.0000000000
+        8.0728198090       -1.2093089544        0.0000000001
+        0.0000000000        0.0000000000        0.0921550230
+
+  LL contribution to SD:
+       -0.6633973916        8.0817143110        0.0000000000
+        8.0701137178       -0.3199922471        0.0000000001
+        0.0000000000        0.0000000001        0.9811278317
+
+  SS contribution to SD:
+       -0.8899817735        0.0030075841       -0.0000000000
+        0.0027060912       -0.8893167074       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.8889728086
+
+  Gordon decomposition, a(I,S) [MHz]:
+       84.4975091710        8.1398529514        0.0000000002
+        8.1564486970       84.8769630925       -0.0000000002
+        0.0000000021        0.0000000019       86.2027463161
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             76.536877            0.7153   -0.6988   -0.0000
+  a_22             86.202746            0.0000    0.0000   -1.0000
+  a_33             92.837596            0.6988    0.7153    0.0000
+  a_iso            85.192406
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        87.097           87.112           87.091           87.087
+  PSO       -1.014           -1.113           -0.981           -0.948
+  SD        -0.890           -9.462            0.092            6.699
+  SUM       85.192           76.537           86.203           92.838
+ ---------------------------------------------------------------------
+
+
+=============================
+HFCC FOR NUCLEUS # 4 = Carbon
+=============================
+::
+
+  g-factor           =    1.404824
+  Atomic mass        =   13.003355
+  Atomic mass number =   13
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                            -1.1575999  -1.4958184   0.0000000
+
+  Fermi-contact term (FC):
+        0.5881470069        0.0697859981        0.0000000001
+       -0.0701317092        0.5830999162        0.0000000001
+        0.0000000008        0.0000000012        0.5893097662
+
+  Paramagnetic spin orbit term (PSO):
+        0.0387498505       -0.1022025806        0.0000000000
+       -0.0041561357        0.0243335500        0.0000000000
+       -0.0000000000       -0.0000000000       -0.0081952474
+
+  Spin dipolar term (SD):
+        2.5092724048        0.0955218640       -0.0000000000
+        0.0650890999        6.4426938086       -0.0000000001
+       -0.0000000000       -0.0000000001       -8.9506902455
+
+  First relativistic term (R1):
+        0.0001674060       -0.0003151609        0.0000000001
+        0.0003154738        0.0002814843        0.0000000002
+       -0.0000000002       -0.0000000002       -0.0018484733
+
+  Second relativistic term (R2):
+       -0.0043525013       -0.0005136228        0.0000000000
+       -0.0002369872       -0.0026700509        0.0000000000
+        0.0000000000        0.0000000000       -0.0116165376
+
+  a(I,S) [MHz]:
+        3.1319841669        0.0622764977        0.0000000002
+       -0.0091202584        7.0477387082        0.0000000002
+       -0.0000000004        0.0000000020       -8.3830407368
+
+  A(I,I) = a*a^T:
+        9.8132031841        0.4103439788       -0.0000000029
+        0.4103439788       49.6707040780        0.0000000125
+       -0.0000000029        0.0000000125       70.2753719949
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              3.131929            0.9999   -0.0103    0.0000
+  a_22              7.048044            0.0103    0.9999   -0.0000
+  a_33              8.383041           -0.0000    0.0000    1.0000
+  a_iso             6.187671
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:  -1.85E+02
+  Because the determinant is negative one must modify the a-values
+  such that a_11*a_22*a_33 < 0, f.e. modify a_11 --> -a_11
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -8.383041            0.0000   -0.0000    1.0000
+  a_22              3.131804            1.0000   -0.0068   -0.0000
+  a_33              7.047919            0.0068    1.0000    0.0000
+  a_iso             0.598894
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         0.587            0.589            0.588            0.583
+  PSO        0.018           -0.008            0.039            0.024
+  SD         0.000           -8.951            2.508            6.444
+  R1        -0.000           -0.002            0.000            0.000
+  R2        -0.006           -0.012           -0.004           -0.003
+  REL       -0.007           -0.013           -0.004           -0.002
+  SUM        0.599           -8.383            3.132            7.048
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+        0.5849089230        0.0713934267       -0.0000000001
+       -0.0705918137        0.5752647993       -0.0000000002
+        0.0000000009        0.0000000013        0.6077209268
+
+  LL contribution to FC:
+        0.5938809885        0.0708127615       -0.0000000001
+       -0.0711647598        0.5887731190       -0.0000000002
+        0.0000000009        0.0000000013        0.5950920855
+
+  SS contribution to FC:
+       -0.0089720656        0.0005806652       -0.0000000000
+        0.0005729461       -0.0135083197        0.0000000000
+        0.0000000000        0.0000000000        0.0126288414
+
+  Gordon decomposition, PSO term:
+        0.0447490834       -0.1037366548        0.0000000000
+       -0.0038027247        0.0324579439       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.0145099220
+
+  LL contribution to PSO:
+        0.0478671871       -0.1027946803        0.0000000000
+       -0.0043231558        0.0353954860        0.0000000000
+       -0.0000000000       -0.0000000000       -0.0096629695
+
+  SS contribution to PSO:
+       -0.0031181037       -0.0009419745       -0.0000000000
+        0.0005204311       -0.0029375420       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.0048469525
+
+  Gordon decomposition, SD term:
+        2.5051982582        0.0944560630       -0.0000000000
+        0.0652988466        6.4444155917       -0.0000000001
+       -0.0000000000       -0.0000000001       -8.9787821718
+
+  LL contribution to SD:
+        2.5142248752        0.0951189041       -0.0000000000
+        0.0646486435        6.4523160872       -0.0000000001
+       -0.0000000000       -0.0000000001       -8.9652332242
+
+  SS contribution to SD:
+       -0.0090266170       -0.0006628412       -0.0000000000
+        0.0006502031       -0.0079004955       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.0135489476
+
+  Gordon decomposition, a(I,S) [MHz]:
+        3.1348562646        0.0621128349       -0.0000000001
+       -0.0090956918        7.0521383350       -0.0000000003
+        0.0000000009        0.0000000011       -8.3855711670
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -8.385571           -0.0000   -0.0000    1.0000
+  a_22              3.134677            1.0000   -0.0068    0.0000
+  a_33              7.052318            0.0068    1.0000    0.0000
+  a_iso             0.600474
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         0.589            0.608            0.585            0.575
+  PSO        0.021           -0.015            0.045            0.032
+  SD        -0.010           -8.979            2.504            6.445
+  SUM        0.600           -8.386            3.135            7.052
+ ---------------------------------------------------------------------
+
+
+=============================
+HFCC FOR NUCLEUS # 5 = Carbon
+=============================
+::
+
+  g-factor           =    1.404824
+  Atomic mass        =   13.003355
+  Atomic mass number =   13
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                             0.0231728  -0.6807444   0.0000000
+
+  Fermi-contact term (FC):
+        6.1159238227       -0.0037358965        0.0000000003
+        0.0043416981        6.1212807711       -0.0000000002
+       -0.0000000012       -0.0000000009        6.1155999697
+
+  Paramagnetic spin orbit term (PSO):
+       -0.0212111569       -0.0014981553        0.0000000000
+        0.0057737299       -0.0146339409        0.0000000000
+        0.0000000000        0.0000000000       -0.0055704692
+
+  Spin dipolar term (SD):
+       -1.5188786571        0.4061525805       -0.0000000000
+        0.4038721186       -1.4085641348       -0.0000000000
+        0.0000000001       -0.0000000000        2.9265087862
+
+  First relativistic term (R1):
+       -0.0431318283        0.0001163622        0.0000000001
+        0.0000752187       -0.0431252812       -0.0000000007
+       -0.0000000004       -0.0000000004       -0.0421815918
+
+  Second relativistic term (R2):
+        0.0030021106        0.0000307407       -0.0000000000
+        0.0001475238        0.0029567766       -0.0000000000
+        0.0000000000        0.0000000000        0.0059116708
+
+  a(I,S) [MHz]:
+        4.5357042910        0.4010656316        0.0000000004
+        0.4142102890        4.6579141909       -0.0000000008
+        0.0000000001       -0.0000000001        9.0002683664
+
+  A(I,I) = a*a^T:
+       20.7334670565        3.7468646820        0.0000000042
+        3.7468646820       21.8677347731       -0.0000000079
+        0.0000000042       -0.0000000079       81.0048306677
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              4.184622           -0.7582    0.6521    0.0000
+  a_22              5.009006            0.6521    0.7582    0.0000
+  a_33              9.000268            0.0000   -0.0000    1.0000
+  a_iso             6.064632
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   1.89E+02
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              4.184617           -0.7577    0.6526    0.0000
+  a_22              5.009002            0.6526    0.7577    0.0000
+  a_33              9.000268            0.0000   -0.0000    1.0000
+  a_iso             6.064629
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         6.118            6.118            6.119            6.116
+  PSO       -0.014           -0.021           -0.015           -0.006
+  SD        -0.000           -1.872           -1.055            2.927
+  R1        -0.043           -0.043           -0.043           -0.042
+  R2         0.004            0.003            0.003            0.006
+  REL       -0.039           -0.040           -0.040           -0.036
+  SUM        6.065            4.185            5.009            9.000
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+        6.1910745779       -0.0045878799       -0.0000000001
+        0.0037126174        6.1961825397        0.0000000005
+       -0.0000000006       -0.0000000003        6.1819676032
+
+  LL contribution to FC:
+        6.1859455727       -0.0038419204       -0.0000000001
+        0.0044571519        6.1913653350        0.0000000005
+       -0.0000000006       -0.0000000003        6.1856203959
+
+  SS contribution to FC:
+        0.0051290052       -0.0007459594        0.0000000000
+       -0.0007445345        0.0048172047       -0.0000000000
+       -0.0000000000        0.0000000000       -0.0036527928
+
+  Gordon decomposition, PSO term:
+       -0.0925558531       -0.0010599847       -0.0000000000
+        0.0061930206       -0.0859285129        0.0000000001
+        0.0000000000        0.0000000000       -0.0720339644
+
+  LL contribution to PSO:
+       -0.0266270995       -0.0011965798        0.0000000000
+        0.0061426256       -0.0198639087       -0.0000000000
+        0.0000000000        0.0000000000       -0.0068410783
+
+  SS contribution to PSO:
+       -0.0659287536        0.0001365950       -0.0000000000
+        0.0000503951       -0.0660646042        0.0000000001
+        0.0000000000        0.0000000000       -0.0651928860
+
+  Gordon decomposition, SD term:
+       -1.5838229454        0.4069813201       -0.0000000000
+        0.4045975112       -1.4731887485        0.0000000001
+        0.0000000001        0.0000000000        2.8713749677
+
+  LL contribution to SD:
+       -1.5216372118        0.4067971971       -0.0000000000
+        0.4045164968       -1.4110609869       -0.0000000000
+        0.0000000001       -0.0000000000        2.9317436414
+
+  SS contribution to SD:
+       -0.0621857336        0.0001841230       -0.0000000000
+        0.0000810144       -0.0621277616        0.0000000001
+        0.0000000000        0.0000000000       -0.0603686736
+
+  Gordon decomposition, a(I,S) [MHz]:
+        4.5146957794        0.4013334555       -0.0000000001
+        0.4145031493        4.6370652783        0.0000000007
+       -0.0000000005       -0.0000000003        8.9813086065
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              4.163399           -0.7577    0.6526   -0.0000
+  a_22              4.988362            0.6526    0.7577    0.0000
+  a_33              8.981309           -0.0000    0.0000    1.0000
+  a_iso             6.044357
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         6.190            6.194            6.194            6.182
+  PSO       -0.084           -0.092           -0.086           -0.072
+  SD        -0.062           -1.938           -1.119            2.871
+  SUM        6.044            4.163            4.988            8.981
+ ---------------------------------------------------------------------
+
+
+=============================
+HFCC FOR NUCLEUS # 6 = Carbon
+=============================
+::
+
+  g-factor           =    1.404824
+  Atomic mass        =   13.003355
+  Atomic mass number =   13
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                             0.0149458   0.6936738   0.0000000
+
+  Fermi-contact term (FC):
+       -2.0349570346        0.0063202642        0.0000000003
+       -0.0066933833       -2.0370409082        0.0000000001
+        0.0000000017        0.0000000016       -2.0343902802
+
+  Paramagnetic spin orbit term (PSO):
+        0.0205371251        0.0206376434        0.0000000000
+       -0.0031485461        0.0197408661        0.0000000000
+        0.0000000000        0.0000000000        0.0010874615
+
+  Spin dipolar term (SD):
+        2.5598780363        0.1144221316        0.0000000000
+        0.1221231929        3.1051280754        0.0000000000
+        0.0000000000        0.0000000000       -5.6640068663
+
+  First relativistic term (R1):
+        0.0170836321        0.0000152051        0.0000000002
+        0.0000152101        0.0170611886       -0.0000000006
+        0.0000000001        0.0000000001        0.0156041397
+
+  Second relativistic term (R2):
+       -0.0037367767       -0.0001300728        0.0000000000
+       -0.0000284358       -0.0036351353        0.0000000000
+        0.0000000000        0.0000000000       -0.0090156692
+
+  a(I,S) [MHz]:
+        0.5588049822        0.1412651715        0.0000000006
+        0.1122680378        1.1012540866       -0.0000000005
+        0.0000000013        0.0000000021       -7.6907212138
+
+  A(I,I) = a*a^T:
+        0.3322188568        0.2183047862       -0.0000000034
+        0.2183047862        1.2253646755        0.0000000066
+       -0.0000000034        0.0000000066       59.1471927889
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.530769            0.9743   -0.2254    0.0000
+  a_22              1.129543            0.2254    0.9743   -0.0000
+  a_33              7.690721           -0.0000    0.0000    1.0000
+  a_iso             3.117011
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:  -4.61E+00
+  Because the determinant is negative one must modify the a-values
+  such that a_11*a_22*a_33 < 0, f.e. modify a_11 --> -a_11
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -7.690721           -0.0000   -0.0000    1.0000
+  a_22              0.530643            0.9762   -0.2169    0.0000
+  a_33              1.129416            0.2169    0.9762    0.0000
+  a_iso            -2.010221
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -2.035           -2.034           -2.035           -2.037
+  PSO        0.014            0.001            0.017            0.023
+  SD         0.000           -5.664            2.535            3.130
+  R1         0.017            0.016            0.017            0.017
+  R2        -0.005           -0.009           -0.004           -0.004
+  REL        0.011            0.007            0.013            0.013
+  SUM       -2.010           -7.691            0.531            1.129
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+       -2.0668195690        0.0063885399       -0.0000000001
+       -0.0068188761       -2.0692801196        0.0000000008
+        0.0000000015        0.0000000013       -2.0504536121
+
+  LL contribution to FC:
+       -2.0588063610        0.0064139036       -0.0000000001
+       -0.0067919594       -2.0609149282        0.0000000008
+        0.0000000015        0.0000000013       -2.0582340796
+
+  SS contribution to FC:
+       -0.0080132080       -0.0000253636       -0.0000000000
+       -0.0000269167       -0.0083651914       -0.0000000000
+        0.0000000000       -0.0000000000        0.0077804674
+
+  Gordon decomposition, PSO term:
+        0.0524859219        0.0205132129       -0.0000000000
+       -0.0030731327        0.0518582681        0.0000000000
+       -0.0000000000       -0.0000000000        0.0240210316
+
+  LL contribution to PSO:
+        0.0285308251        0.0206097129        0.0000000000
+       -0.0031194896        0.0279039732       -0.0000000000
+        0.0000000000        0.0000000000        0.0013758626
+
+  SS contribution to PSO:
+        0.0239550968       -0.0000965001       -0.0000000000
+        0.0000463569        0.0239542950        0.0000000000
+       -0.0000000000       -0.0000000000        0.0226451690
+
+  Gordon decomposition, SD term:
+        2.5833572660        0.1144228691       -0.0000000000
+        0.1222632338        3.1291686994        0.0000000001
+       -0.0000000000        0.0000000000       -5.6580402572
+
+  LL contribution to SD:
+        2.5644838036        0.1144716994        0.0000000000
+        0.1221801312        3.1101747888        0.0000000000
+        0.0000000000        0.0000000000       -5.6736342127
+
+  SS contribution to SD:
+        0.0188734625       -0.0000488303       -0.0000000000
+        0.0000831026        0.0189939105        0.0000000000
+       -0.0000000000       -0.0000000000        0.0155939555
+
+  Gordon decomposition, a(I,S) [MHz]:
+        0.5690236190        0.1413246219       -0.0000000001
+        0.1123712250        1.1117468479        0.0000000009
+        0.0000000015        0.0000000013       -7.6844728377
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -7.684473           -0.0000   -0.0000    1.0000
+  a_22              0.540840            0.9762   -0.2169    0.0000
+  a_33              1.139931            0.2169    0.9762    0.0000
+  a_iso            -2.001234
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -2.062           -2.050           -2.067           -2.069
+  PSO        0.043            0.024            0.049            0.056
+  SD         0.018           -5.658            2.559            3.154
+  SUM       -2.001           -7.684            0.541            1.140
+ ---------------------------------------------------------------------
+
+
+=============================
+HFCC FOR NUCLEUS # 7 = Carbon
+=============================
+::
+
+  g-factor           =    1.404824
+  Atomic mass        =   13.003355
+  Atomic mass number =   13
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                             1.1947063   1.5097131   0.0000000
+
+  Fermi-contact term (FC):
+        2.8047290544       -0.0002200841        0.0000000000
+        0.0005371479        2.8057336953       -0.0000000002
+        0.0000000008       -0.0000000012        2.8041335565
+
+  Paramagnetic spin orbit term (PSO):
+       -0.0110530664        0.0026701986       -0.0000000000
+        0.0018027696       -0.0108348230        0.0000000000
+       -0.0000000000       -0.0000000000       -0.0022694564
+
+  Spin dipolar term (SD):
+       -0.8857458298       -0.0065265242       -0.0000000000
+       -0.0066242074       -0.9933228807       -0.0000000000
+        0.0000000000       -0.0000000001        1.8785061057
+
+  First relativistic term (R1):
+       -0.0200863078        0.0000375830        0.0000000002
+       -0.0000052898       -0.0200843117       -0.0000000002
+        0.0000000002        0.0000000003       -0.0195632766
+
+  Second relativistic term (R2):
+        0.0016131532       -0.0000265667        0.0000000000
+        0.0000198587        0.0015495365        0.0000000000
+       -0.0000000000       -0.0000000000        0.0034059056
+
+  a(I,S) [MHz]:
+        1.8894570035       -0.0040653933        0.0000000002
+       -0.0042697210        1.7830412164       -0.0000000004
+        0.0000000013        0.0000000004        4.6642128355
+
+  A(I,I) = a*a^T:
+        3.5700642957       -0.0153162181        0.0000000033
+       -0.0153162181        3.1792542098       -0.0000000013
+        0.0000000033       -0.0000000013       21.7548813751
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              1.782878            0.0391    0.9992    0.0000
+  a_22              1.889620           -0.9992    0.0391    0.0000
+  a_33              4.664213            0.0000   -0.0000    1.0000
+  a_iso             2.778904
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   1.57E+01
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              1.782878            0.0391    0.9992   -0.0000
+  a_22              1.889620           -0.9992    0.0391    0.0000
+  a_33              4.664213            0.0000   -0.0000    1.0000
+  a_iso             2.778904
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         2.805            2.806            2.805            2.804
+  PSO       -0.008           -0.011           -0.011           -0.002
+  SD        -0.000           -0.994           -0.885            1.879
+  R1        -0.020           -0.020           -0.020           -0.020
+  R2         0.002            0.002            0.002            0.003
+  REL       -0.018           -0.019           -0.018           -0.016
+  SUM        2.779            1.783            1.890            4.664
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+        2.8398292987       -0.0004652096       -0.0000000003
+        0.0003090467        2.8407610160        0.0000000002
+        0.0000000007       -0.0000000010        2.8340183599
+
+  LL contribution to FC:
+        2.8368908114       -0.0002255401       -0.0000000003
+        0.0005481331        2.8379081579        0.0000000002
+        0.0000000007       -0.0000000010        2.8362903240
+
+  SS contribution to FC:
+        0.0029384874       -0.0002396694        0.0000000000
+       -0.0002390865        0.0028528580       -0.0000000000
+       -0.0000000000        0.0000000000       -0.0022719641
+
+  Gordon decomposition, PSO term:
+       -0.0446119716        0.0028401658       -0.0000000000
+        0.0020119751       -0.0442786240        0.0000000001
+       -0.0000000000        0.0000000000       -0.0329257285
+
+  LL contribution to PSO:
+       -0.0140907482        0.0027681845       -0.0000000000
+        0.0019483422       -0.0137950039        0.0000000000
+       -0.0000000000       -0.0000000000       -0.0028666766
+
+  SS contribution to PSO:
+       -0.0305212234        0.0000719812       -0.0000000000
+        0.0000636330       -0.0304836201        0.0000000000
+       -0.0000000000        0.0000000000       -0.0300590519
+
+  Gordon decomposition, SD term:
+       -0.9157232886       -0.0063488701       -0.0000000000
+       -0.0064588621       -1.0233102820        0.0000000000
+        0.0000000000       -0.0000000001        1.8543867666
+
+  LL contribution to SD:
+       -0.8873460883       -0.0063777552       -0.0000000000
+       -0.0064747486       -0.9949201381       -0.0000000000
+        0.0000000000       -0.0000000001        1.8816916132
+
+  SS contribution to SD:
+       -0.0283772002        0.0000288851       -0.0000000000
+        0.0000158865       -0.0283901439        0.0000000000
+       -0.0000000000        0.0000000000       -0.0273048466
+
+  Gordon decomposition, a(I,S) [MHz]:
+        1.8794940385       -0.0039739139       -0.0000000003
+       -0.0041378402        1.7731721099        0.0000000002
+        0.0000000007       -0.0000000011        4.6554793981
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              1.773018            0.0381    0.9993    0.0000
+  a_22              1.879649            0.9993   -0.0381   -0.0000
+  a_33              4.655479            0.0000   -0.0000    1.0000
+  a_iso             2.769382
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         2.838            2.841            2.840            2.834
+  PSO       -0.041           -0.044           -0.045           -0.033
+  SD        -0.028           -1.024           -0.915            1.854
+  SUM        2.769            1.773            1.880            4.655
+ ---------------------------------------------------------------------
+
+
+=============================
+HFCC FOR NUCLEUS # 8 = Carbon
+=============================
+::
+
+  g-factor           =    1.404824
+  Atomic mass        =   13.003355
+  Atomic mass number =   13
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                             1.1892153   2.8813230   0.0000000
+
+  Fermi-contact term (FC):
+       -2.2535197928        0.0006027707       -0.0000000003
+       -0.0007937286       -2.2542743742       -0.0000000001
+        0.0000000015        0.0000000017       -2.2530032171
+
+  Paramagnetic spin orbit term (PSO):
+        0.0233580474       -0.0086801129       -0.0000000000
+       -0.0048597825        0.0197682724        0.0000000000
+       -0.0000000000       -0.0000000000        0.0015359489
+
+  Spin dipolar term (SD):
+        2.1268403680        0.0185188706       -0.0000000000
+        0.0166659849        2.2588481088       -0.0000000000
+       -0.0000000000        0.0000000001       -4.3848319430
+
+  First relativistic term (R1):
+        0.0178449107        0.0000149489       -0.0000000004
+       -0.0000114972        0.0178251997        0.0000000006
+       -0.0000000002       -0.0000000001        0.0166493062
+
+  Second relativistic term (R2):
+       -0.0030381832       -0.0000667576       -0.0000000000
+       -0.0000274155       -0.0030698777       -0.0000000000
+        0.0000000000        0.0000000000       -0.0072062804
+
+  a(I,S) [MHz]:
+       -0.0885146499        0.0103897197       -0.0000000007
+        0.0109735611        0.0390973291        0.0000000005
+        0.0000000019        0.0000000013       -6.6268561837
+
+  A(I,I) = a*a^T:
+        0.0079427895       -0.0005651106        0.0000000048
+       -0.0005651106        0.0016490202       -0.0000000029
+        0.0000000048       -0.0000000029       43.9152228792
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.039984            0.0887    0.9961    0.0000
+  a_22              0.089404           -0.9961    0.0887    0.0000
+  a_33              6.626856            0.0000   -0.0000    1.0000
+  a_iso             2.252081
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   2.37E-02
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -6.626856           -0.0000   -0.0000    1.0000
+  a_22             -0.089403            0.9966   -0.0828    0.0000
+  a_33              0.039985            0.0828    0.9966    0.0000
+  a_iso            -2.225425
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -2.254           -2.253           -2.254           -2.254
+  PSO        0.015            0.002            0.024            0.019
+  SD         0.000           -4.385            2.125            2.261
+  R1         0.017            0.017            0.018            0.018
+  R2        -0.004           -0.007           -0.003           -0.003
+  REL        0.013            0.009            0.015            0.015
+  SUM       -2.225           -6.627           -0.089            0.040
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+       -2.2862122822        0.0006222933       -0.0000000001
+       -0.0007943668       -2.2869666459       -0.0000000004
+        0.0000000019        0.0000000018       -2.2731256141
+
+  LL contribution to FC:
+       -2.2796978650        0.0006121561       -0.0000000001
+       -0.0008057438       -2.2804617186       -0.0000000004
+        0.0000000019        0.0000000018       -2.2791760473
+
+  SS contribution to FC:
+       -0.0065144173        0.0000101372        0.0000000000
+        0.0000113770       -0.0065049272       -0.0000000000
+        0.0000000000       -0.0000000000        0.0060504332
+
+  Gordon decomposition, PSO term:
+        0.0555705583       -0.0087236074        0.0000000000
+       -0.0048487103        0.0519741538       -0.0000000000
+       -0.0000000000        0.0000000000        0.0265716199
+
+  LL contribution to PSO:
+        0.0298538416       -0.0087170503       -0.0000000000
+       -0.0048557174        0.0262724365        0.0000000000
+       -0.0000000000       -0.0000000000        0.0019039223
+
+  SS contribution to PSO:
+        0.0257167167       -0.0000065571        0.0000000000
+        0.0000070071        0.0257017172       -0.0000000000
+       -0.0000000000        0.0000000000        0.0246676977
+
+  Gordon decomposition, SD term:
+        2.1522117031        0.0185150980        0.0000000000
+        0.0166691875        2.2842794740       -0.0000000000
+       -0.0000000000        0.0000000001       -4.3733670568
+
+  LL contribution to SD:
+        2.1306021326        0.0185168142       -0.0000000000
+        0.0166628712        2.2626517785       -0.0000000000
+       -0.0000000000        0.0000000001       -4.3923735577
+
+  SS contribution to SD:
+        0.0216095705       -0.0000017162        0.0000000000
+        0.0000063163        0.0216276955       -0.0000000000
+       -0.0000000000        0.0000000000        0.0190065010
+
+  Gordon decomposition, a(I,S) [MHz]:
+       -0.0784300209        0.0104137840       -0.0000000000
+        0.0110261105        0.0492869819       -0.0000000004
+        0.0000000019        0.0000000019       -6.6199210510
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -6.619921           -0.0000   -0.0000    1.0000
+  a_22             -0.079324            0.9965   -0.0831    0.0000
+  a_33              0.050181           -0.0831   -0.9965   -0.0000
+  a_iso            -2.216355
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -2.282           -2.273           -2.286           -2.287
+  PSO        0.045            0.027            0.057            0.051
+  SD         0.021           -4.373            2.150            2.286
+  SUM       -2.216           -6.620           -0.079            0.050
+ ---------------------------------------------------------------------
+
+
+===============================
+HFCC FOR NUCLEUS # 9 = Hydrogen
+===============================
+::
+
+  g-factor           =    5.585695
+  Atomic mass        =    1.007825
+  Atomic mass number =    1
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                            -3.3126410  -3.1177210   0.0000000
+
+  Fermi-contact term (FC):
+       81.0135258054       -0.3348447820       -0.0000000001
+        0.3370647917       81.0223051316        0.0000000000
+        0.0000000001        0.0000000002       81.0140283543
+
+  Paramagnetic spin orbit term (PSO):
+       -0.0133615593        0.0026344807        0.0000000000
+        0.0057690417       -0.0343211603       -0.0000000000
+        0.0000000000        0.0000000000       -0.0101566279
+
+  Spin dipolar term (SD):
+       -4.9345719666       -3.5490747927       -0.0000000001
+       -3.5227595739       11.5433703942        0.0000000000
+       -0.0000000001        0.0000000000       -6.6071787043
+
+  First relativistic term (R1):
+       -0.0023508049       -0.0049506985        0.0000000000
+        0.0019634556       -0.0084920627        0.0000000000
+        0.0000000000        0.0000000000       -0.0043848673
+
+  Second relativistic term (R2):
+        0.0007721997       -0.0017231023       -0.0000000000
+        0.0028506985        0.0018360404       -0.0000000000
+       -0.0000000000       -0.0000000000        0.0030982226
+
+  a(I,S) [MHz]:
+       76.0640136743       -3.8879588948       -0.0000000002
+       -3.1751115864       92.5246983432        0.0000000000
+       -0.0000000000        0.0000000002       74.3954063775
+
+  A(I,I) = a*a^T:
+     5800.8504006085     -601.2439550379       -0.0000000157
+     -601.2439550379     8570.9011370809        0.0000000256
+       -0.0000000157        0.0000000256     5534.6764900660
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             74.395406            0.0000    0.0000    1.0000
+  a_22             75.339091           -0.9791   -0.2033    0.0000
+  a_33             93.251129            0.2033   -0.9791   -0.0000
+  a_iso            80.995208
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   5.23E+05
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             74.395406            0.0000    0.0000    1.0000
+  a_22             75.338337           -0.9795   -0.2013    0.0000
+  a_33             93.250375            0.2013   -0.9795   -0.0000
+  a_iso            80.994706
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        81.017           81.014           81.014           81.022
+  PSO       -0.019           -0.010           -0.013           -0.035
+  SD         0.001           -6.607           -5.661           12.270
+  R1        -0.005           -0.004           -0.003           -0.008
+  R2         0.002            0.003            0.001            0.002
+  REL       -0.003           -0.001           -0.002           -0.006
+  SUM       80.995           74.395           75.338           93.250
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+       81.0259314460       -0.3372995433       -0.0000000001
+        0.3394063361       81.0347644326        0.0000000000
+        0.0000000000        0.0000000002       81.0266032790
+
+  LL contribution to FC:
+       81.0260666889       -0.3372369221       -0.0000000001
+        0.3394694391       81.0348574017        0.0000000000
+        0.0000000000        0.0000000002       81.0265801922
+
+  SS contribution to FC:
+       -0.0001352429       -0.0000626213        0.0000000000
+       -0.0000631030       -0.0000929690       -0.0000000000
+        0.0000000000       -0.0000000000        0.0000230868
+
+  Gordon decomposition, PSO term:
+       -0.0264889683        0.0032338045        0.0000000000
+        0.0063739955       -0.0526874224       -0.0000000000
+        0.0000000000        0.0000000000       -0.0235056514
+
+  LL contribution to PSO:
+       -0.0133877635        0.0024284070        0.0000000000
+        0.0057157549       -0.0378901230       -0.0000000000
+        0.0000000000        0.0000000000       -0.0122940702
+
+  SS contribution to PSO:
+       -0.0131012049        0.0008053974        0.0000000000
+        0.0006582406       -0.0147972994       -0.0000000000
+        0.0000000000       -0.0000000000       -0.0112115811
+
+  Gordon decomposition, SD term:
+       -4.9492952436       -3.5503550340       -0.0000000001
+       -3.5241088906       11.5338249894        0.0000000000
+       -0.0000000001        0.0000000000       -6.6224596034
+
+  LL contribution to SD:
+       -4.9361556850       -3.5500154100       -0.0000000001
+       -3.5237464342       11.5461115148        0.0000000000
+       -0.0000000001        0.0000000000       -6.6083386047
+
+  SS contribution to SD:
+       -0.0131395586       -0.0003396240        0.0000000000
+       -0.0003624564       -0.0122865253        0.0000000000
+       -0.0000000000       -0.0000000000       -0.0141209987
+
+  Gordon decomposition, a(I,S) [MHz]:
+       76.0501472340       -3.8844207728       -0.0000000002
+       -3.1783285590       92.5159019996        0.0000000001
+       -0.0000000001        0.0000000002       74.3806380242
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             74.380638            0.0000    0.0000    1.0000
+  a_22             75.324739           -0.9795   -0.2012    0.0000
+  a_33             93.241310            0.2012   -0.9795   -0.0000
+  a_iso            80.982229
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        81.029           81.027           81.027           81.034
+  PSO       -0.034           -0.024           -0.026           -0.054
+  SD        -0.013           -6.622           -5.676           12.261
+  SUM       80.982           74.381           75.325           93.241
+ ---------------------------------------------------------------------
+
+
+================================
+HFCC FOR NUCLEUS # 10 = Hydrogen
+================================
+::
+
+  g-factor           =    5.585695
+  Atomic mass        =    1.007825
+  Atomic mass number =    1
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                            -0.1893034  -3.3983374   0.0000000
+
+  Fermi-contact term (FC):
+       -5.6528821443        0.0029001137        0.0000000000
+       -0.0029398727       -5.6554718772       -0.0000000000
+       -0.0000000001        0.0000000001       -5.6532294150
+
+  Paramagnetic spin orbit term (PSO):
+       -0.0154342004        0.0322832855        0.0000000000
+        0.0099735174        0.0092390338        0.0000000000
+       -0.0000000000       -0.0000000000       -0.0046130545
+
+  Spin dipolar term (SD):
+        6.4363760750        2.1710998247        0.0000000000
+        2.1683857466       -1.3647974672       -0.0000000000
+       -0.0000000000       -0.0000000000       -5.0722587774
+
+  First relativistic term (R1):
+        0.0001316529        0.0005330358        0.0000000000
+       -0.0010860189        0.0034448850       -0.0000000000
+        0.0000000000        0.0000000000        0.0035111813
+
+  Second relativistic term (R2):
+        0.0025564290       -0.0008120563       -0.0000000000
+       -0.0016467564       -0.0011192131       -0.0000000000
+        0.0000000000        0.0000000000       -0.0012002119
+
+  a(I,S) [MHz]:
+        0.7707478122        2.2060042034        0.0000000001
+        2.1726866159       -7.0087046387       -0.0000000000
+       -0.0000000001        0.0000000001      -10.7277902775
+
+  A(I,I) = a*a^T:
+        5.4605067353      -13.7866384375       -0.0000000005
+      -13.7866384375       53.8425078438       -0.0000000004
+       -0.0000000005       -0.0000000004      115.0854842371
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              1.344519            0.9666    0.2561    0.0000
+  a_22              7.582564            0.2561   -0.9666   -0.0000
+  a_33             10.727790           -0.0000   -0.0000    1.0000
+  a_iso             6.551624
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   1.09E+02
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11            -10.727790            0.0000   -0.0000    1.0000
+  a_22             -7.582520           -0.2535    0.9673    0.0000
+  a_33              1.344563            0.9673    0.2535   -0.0000
+  a_iso            -5.655249
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -5.654           -5.653           -5.655           -5.653
+  PSO       -0.004           -0.005           -0.003           -0.003
+  SD        -0.000           -5.072           -1.928            6.999
+  R1         0.002            0.004            0.003            0.000
+  R2         0.000           -0.001           -0.000            0.002
+  REL        0.002            0.002            0.003            0.002
+  SUM       -5.655          -10.728           -7.583            1.345
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+       -5.6537813448        0.0027833754        0.0000000000
+       -0.0028499949       -5.6562760092       -0.0000000000
+       -0.0000000001        0.0000000001       -5.6541606514
+
+  LL contribution to FC:
+       -5.6537940968        0.0027934804        0.0000000000
+       -0.0028398826       -5.6563877097       -0.0000000000
+       -0.0000000001        0.0000000001       -5.6541430458
+
+  SS contribution to FC:
+        0.0000127519       -0.0000101050       -0.0000000000
+       -0.0000101123        0.0001117005       -0.0000000000
+        0.0000000000       -0.0000000000       -0.0000176056
+
+  Gordon decomposition, PSO term:
+       -0.0169643138        0.0333917857        0.0000000000
+        0.0114347795        0.0106687937        0.0000000000
+       -0.0000000000       -0.0000000000       -0.0021429680
+
+  LL contribution to PSO:
+       -0.0168419097        0.0328221062        0.0000000000
+        0.0108497088        0.0098384709        0.0000000000
+       -0.0000000000       -0.0000000000       -0.0040329636
+
+  SS contribution to PSO:
+       -0.0001224041        0.0005696794       -0.0000000000
+        0.0005850706        0.0008303229        0.0000000000
+        0.0000000000       -0.0000000000        0.0018899955
+
+  Gordon decomposition, SD term:
+        6.4396639406        2.1707589250        0.0000000000
+        2.1680714727       -1.3638573597       -0.0000000000
+       -0.0000000000       -0.0000000000       -5.0736565837
+
+  LL contribution to SD:
+        6.4382165938        2.1710967945        0.0000000000
+        2.1683030685       -1.3647933280       -0.0000000000
+       -0.0000000000       -0.0000000000       -5.0740995549
+
+  SS contribution to SD:
+        0.0014473468       -0.0003378695       -0.0000000000
+       -0.0002315958        0.0009359684        0.0000000000
+        0.0000000000       -0.0000000000        0.0004429713
+
+  Gordon decomposition, a(I,S) [MHz]:
+        0.7689182820        2.2069340861        0.0000000000
+        2.1766562572       -7.0094645752       -0.0000000000
+       -0.0000000001        0.0000000001      -10.7299602031
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11            -10.729960            0.0000   -0.0000    1.0000
+  a_22             -7.584551           -0.2538    0.9673    0.0000
+  a_33              1.344005            0.9673    0.2538   -0.0000
+  a_iso            -5.656835
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -5.655           -5.654           -5.656           -5.654
+  PSO       -0.003           -0.002           -0.002           -0.004
+  SD         0.001           -5.074           -1.926            7.002
+  SUM       -5.657          -10.730           -7.585            1.344
+ ---------------------------------------------------------------------
+
+
+================================
+HFCC FOR NUCLEUS # 11 = Hydrogen
+================================
+::
+
+  g-factor           =    5.585695
+  Atomic mass        =    1.007825
+  Atomic mass number =    1
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                            -2.1272311  -0.9749303   0.0000000
+
+  Fermi-contact term (FC):
+        2.0728525078       -0.0068179096       -0.0000000000
+        0.0067360678        2.0752883005       -0.0000000000
+       -0.0000000001       -0.0000000003        2.0726861670
+
+  Paramagnetic spin orbit term (PSO):
+       -0.0026094712       -0.0169241562       -0.0000000000
+        0.0027617309       -0.0066372367       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.0005104119
+
+  Spin dipolar term (SD):
+       -1.8071585613        1.3036895245       -0.0000000000
+        1.3003060074        3.4905159769        0.0000000000
+       -0.0000000000       -0.0000000000       -1.6827795248
+
+  First relativistic term (R1):
+        0.0010777409       -0.0000173987       -0.0000000000
+       -0.0001170968       -0.0002574859        0.0000000000
+       -0.0000000000       -0.0000000000        0.0008055463
+
+  Second relativistic term (R2):
+        0.0000243061       -0.0014417699        0.0000000000
+        0.0001306100        0.0000559353        0.0000000000
+        0.0000000000        0.0000000000        0.0009144692
+
+  a(I,S) [MHz]:
+        0.2641865222        1.2784882901       -0.0000000000
+        1.3098173193        5.5589654902       -0.0000000000
+       -0.0000000001       -0.0000000003        0.3911162458
+
+  A(I,I) = a*a^T:
+        1.7043268264        7.4531083665       -0.0000000005
+        7.4531083665       32.6177187310       -0.0000000019
+       -0.0000000005       -0.0000000019        0.1529719177
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.035160            0.9749   -0.2228    0.0000
+  a_22              0.391116            0.0000   -0.0000   -1.0000
+  a_33              5.858396            0.2228    0.9749   -0.0000
+  a_iso             2.094891
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:  -8.06E-02
+  Because the determinant is negative one must modify the a-values
+  such that a_11*a_22*a_33 < 0, f.e. modify a_11 --> -a_11
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -0.035202            0.9743   -0.2254    0.0000
+  a_22              0.391116            0.0000   -0.0000   -1.0000
+  a_33              5.858354            0.2254    0.9743   -0.0000
+  a_iso             2.071423
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         2.074            2.073            2.073            2.075
+  PSO       -0.003            0.000           -0.001           -0.010
+  SD         0.000           -2.110           -1.683            3.793
+  R1         0.001            0.001            0.001           -0.000
+  R2         0.000            0.000            0.001           -0.000
+  REL        0.001            0.001            0.002           -0.000
+  SUM        2.071           -0.035            0.391            5.858
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+        2.0731090792       -0.0067925466       -0.0000000000
+        0.0066905469        2.0755449939       -0.0000000000
+       -0.0000000001       -0.0000000003        2.0730885071
+
+  LL contribution to FC:
+        2.0731790030       -0.0067788065       -0.0000000000
+        0.0067043396        2.0756200343       -0.0000000000
+       -0.0000000001       -0.0000000003        2.0730102372
+
+  SS contribution to FC:
+       -0.0000699237       -0.0000137401        0.0000000000
+       -0.0000137927       -0.0000750404        0.0000000000
+        0.0000000000        0.0000000000        0.0000782699
+
+  Gordon decomposition, PSO term:
+       -0.0022312502       -0.0181989135       -0.0000000000
+        0.0022024740       -0.0083877337       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.0012672521
+
+  LL contribution to PSO:
+       -0.0020580001       -0.0179632422       -0.0000000000
+        0.0024483709       -0.0074061429       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.0012766241
+
+  SS contribution to PSO:
+       -0.0001732501       -0.0002356713        0.0000000000
+       -0.0002458969       -0.0009815908        0.0000000000
+        0.0000000000        0.0000000000        0.0000093719
+
+  Gordon decomposition, SD term:
+       -1.8084398723        1.3043427084       -0.0000000000
+        1.3007260435        3.4912153424        0.0000000000
+       -0.0000000000       -0.0000000000       -1.6834691281
+
+  LL contribution to SD:
+       -1.8079231204        1.3040880426       -0.0000000000
+        1.3007292632        3.4913258256        0.0000000000
+       -0.0000000000       -0.0000000000       -1.6828257773
+
+  SS contribution to SD:
+       -0.0005167519        0.0002546658        0.0000000000
+       -0.0000032197       -0.0001104832       -0.0000000000
+        0.0000000000        0.0000000000       -0.0006433508
+
+  Gordon decomposition, a(I,S) [MHz]:
+        0.2624379567        1.2793512483       -0.0000000000
+        1.3096190645        5.5583726027       -0.0000000000
+       -0.0000000001       -0.0000000003        0.3883521269
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -0.037038            0.9743   -0.2254    0.0000
+  a_22              0.388352            0.0000   -0.0000   -1.0000
+  a_33              5.857849            0.2254    0.9743   -0.0000
+  a_iso             2.069721
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         2.074            2.073            2.073            2.075
+  PSO       -0.004            0.001           -0.001           -0.012
+  SD        -0.000           -2.111           -1.683            3.794
+  SUM        2.070           -0.037            0.388            5.858
+ ---------------------------------------------------------------------
+
+
+================================
+HFCC FOR NUCLEUS # 12 = Hydrogen
+================================
+::
+
+  g-factor           =    5.585695
+  Atomic mass        =    1.007825
+  Atomic mass number =    1
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                             0.9931351  -1.2006620   0.0000000
+
+  Fermi-contact term (FC):
+       -0.8766382245        0.0048093158        0.0000000000
+       -0.0047461854       -0.8780717033        0.0000000000
+        0.0000000003        0.0000000002       -0.8763537857
+
+  Paramagnetic spin orbit term (PSO):
+        0.0010533616       -0.0040037294        0.0000000000
+        0.0016782546        0.0034201215       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.0012077984
+
+  Spin dipolar term (SD):
+        0.7564053238        0.4923242092       -0.0000000000
+        0.4921083968       -0.1562146181       -0.0000000000
+        0.0000000000       -0.0000000000       -0.6003859401
+
+  First relativistic term (R1):
+        0.0003549505        0.0002303390        0.0000000000
+       -0.0002112916        0.0006733968       -0.0000000000
+        0.0000000000        0.0000000000        0.0010805629
+
+  Second relativistic term (R2):
+        0.0005770883       -0.0005757429       -0.0000000000
+       -0.0004463729       -0.0000770609       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.0004606372
+
+  a(I,S) [MHz]:
+       -0.1182475003        0.4927843917        0.0000000000
+        0.4883828014       -1.0302698640        0.0000000000
+        0.0000000003        0.0000000002       -1.4773275985
+
+  A(I,I) = a*a^T:
+        0.2568189280       -0.5654509536        0.0000000000
+       -0.5654509536        1.2999737533       -0.0000000001
+        0.0000000000       -0.0000000001        2.1824968334
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.095527            0.9160    0.4012    0.0000
+  a_22              1.244053           -0.4012    0.9160    0.0000
+  a_33              1.477328            0.0000   -0.0000    1.0000
+  a_iso             0.938969
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   1.76E-01
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -1.477328           -0.0000   -0.0000    1.0000
+  a_22             -1.244049            0.3995   -0.9167   -0.0000
+  a_33              0.095531            0.9167    0.3995    0.0000
+  a_iso            -0.875282
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -0.877           -0.876           -0.878           -0.877
+  PSO        0.001           -0.001            0.004            0.001
+  SD        -0.000           -0.600           -0.371            0.971
+  R1         0.001            0.001            0.001            0.000
+  R2         0.000           -0.000            0.000            0.000
+  REL        0.001            0.001            0.001            0.001
+  SUM       -0.875           -1.477           -1.244            0.096
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+       -0.8768058241        0.0048096471        0.0000000000
+       -0.0047479328       -0.8782371999        0.0000000000
+        0.0000000002        0.0000000001       -0.8765781806
+
+  LL contribution to FC:
+       -0.8768362694        0.0048088335        0.0000000000
+       -0.0047487283       -0.8782719497        0.0000000000
+        0.0000000002        0.0000000001       -0.8765504624
+
+  SS contribution to FC:
+        0.0000304453        0.0000008137        0.0000000000
+        0.0000007955        0.0000347497        0.0000000000
+       -0.0000000000        0.0000000000       -0.0000277182
+
+  Gordon decomposition, PSO term:
+        0.0007089420       -0.0038340775        0.0000000000
+        0.0021072608        0.0039280540       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.0010491122
+
+  LL contribution to PSO:
+        0.0007639947       -0.0039476881        0.0000000000
+        0.0019923174        0.0037510546       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.0012841823
+
+  SS contribution to PSO:
+       -0.0000550528        0.0001136106       -0.0000000000
+        0.0001149434        0.0001769994        0.0000000000
+       -0.0000000000       -0.0000000000        0.0002350701
+
+  Gordon decomposition, SD term:
+        0.7569718890        0.4922753616       -0.0000000000
+        0.4920363965       -0.1561236264        0.0000000000
+        0.0000000000        0.0000000000       -0.6006056861
+
+  LL contribution to SD:
+        0.7567430163        0.4923190227       -0.0000000000
+        0.4921050819       -0.1562350455        0.0000000000
+        0.0000000000        0.0000000000       -0.6007034293
+
+  SS contribution to SD:
+        0.0002288727       -0.0000436611       -0.0000000000
+       -0.0000686853        0.0001114191       -0.0000000000
+       -0.0000000000       -0.0000000000        0.0000977431
+
+  Gordon decomposition, a(I,S) [MHz]:
+       -0.1191249932        0.4932509313        0.0000000000
+        0.4893957245       -1.0304327724        0.0000000000
+        0.0000000003        0.0000000001       -1.4782329790
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -1.478233           -0.0000   -0.0000    1.0000
+  a_22             -1.244868            0.4000   -0.9165   -0.0000
+  a_33              0.095310            0.9165    0.4000    0.0000
+  a_iso            -0.875930
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -0.877           -0.877           -0.878           -0.877
+  PSO        0.001           -0.001            0.004            0.001
+  SD         0.000           -0.601           -0.371            0.972
+  SUM       -0.876           -1.478           -1.245            0.095
+ ---------------------------------------------------------------------
+
+
+================================
+HFCC FOR NUCLEUS # 13 = Hydrogen
+================================
+::
+
+  g-factor           =    5.585695
+  Atomic mass        =    1.007825
+  Atomic mass number =    1
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                            -0.9552397   1.2133168   0.0000000
+
+  Fermi-contact term (FC):
+        1.8048265957       -0.0008449818        0.0000000000
+        0.0008750401        1.8057470647       -0.0000000000
+       -0.0000000002        0.0000000001        1.8045990627
+
+  Paramagnetic spin orbit term (PSO):
+       -0.0032559691        0.0017952015        0.0000000000
+       -0.0004790517       -0.0064673389       -0.0000000000
+        0.0000000000        0.0000000000       -0.0008361465
+
+  Spin dipolar term (SD):
+       -0.9964643636        1.0757497712       -0.0000000000
+        1.0768921325        1.2350897295        0.0000000000
+       -0.0000000000        0.0000000000       -0.2383095567
+
+  First relativistic term (R1):
+        0.0003749279        0.0001059514        0.0000000000
+        0.0000143874       -0.0000545742        0.0000000000
+        0.0000000000        0.0000000000        0.0002777724
+
+  Second relativistic term (R2):
+       -0.0001403932       -0.0006275800        0.0000000000
+       -0.0001536393       -0.0002598032        0.0000000000
+       -0.0000000000       -0.0000000000        0.0005055979
+
+  a(I,S) [MHz]:
+        0.8053407977        1.0761783623        0.0000000000
+        1.0771488689        3.0340550779       -0.0000000000
+       -0.0000000002        0.0000000001        1.5662367298
+
+  A(I,I) = a*a^T:
+        1.8067336678        4.1326563540        0.0000000000
+        4.1326563540       10.3657399016        0.0000000002
+        0.0000000000        0.0000000002        2.4530974938
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.370183            0.9272   -0.3746    0.0000
+  a_22              1.566237            0.0000    0.0000   -1.0000
+  a_33              3.469213            0.3746    0.9272    0.0000
+  a_iso             1.801878
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   2.01E+00
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.370183           -0.9271    0.3747   -0.0000
+  a_22              1.566237           -0.0000    0.0000    1.0000
+  a_33              3.469213           -0.3747   -0.9271   -0.0000
+  a_iso             1.801878
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         1.805            1.805            1.805            1.806
+  PSO       -0.004           -0.004           -0.001           -0.006
+  SD         0.000           -1.431           -0.238            1.670
+  R1         0.000            0.000            0.000            0.000
+  R2         0.000            0.000            0.001           -0.001
+  REL        0.000            0.000            0.001           -0.000
+  SUM        1.802            0.370            1.566            3.469
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+        1.8050863999       -0.0008426945        0.0000000000
+        0.0008732731        1.8060062822       -0.0000000000
+       -0.0000000002        0.0000000001        1.8049572130
+
+  LL contribution to FC:
+        1.8051371789       -0.0008402227        0.0000000000
+        0.0008757730        1.8060611619       -0.0000000000
+       -0.0000000002        0.0000000001        1.8049080748
+
+  SS contribution to FC:
+       -0.0000507790       -0.0000024717       -0.0000000000
+       -0.0000024999       -0.0000548796        0.0000000000
+       -0.0000000000       -0.0000000000        0.0000491382
+
+  Gordon decomposition, PSO term:
+       -0.0029019168        0.0008251267        0.0000000000
+       -0.0012483855       -0.0073162809       -0.0000000000
+        0.0000000000        0.0000000000       -0.0014899159
+
+  LL contribution to PSO:
+       -0.0027569620        0.0010872365        0.0000000000
+       -0.0009833866       -0.0067103439       -0.0000000000
+        0.0000000000        0.0000000000       -0.0011966286
+
+  SS contribution to PSO:
+       -0.0001449549       -0.0002621098       -0.0000000000
+       -0.0002649989       -0.0006059371        0.0000000000
+        0.0000000000       -0.0000000000       -0.0002932873
+
+  Gordon decomposition, SD term:
+       -0.9974776403        1.0763702765       -0.0000000000
+        1.0774603682        1.2351591542        0.0000000000
+        0.0000000000        0.0000000000       -0.2385209967
+
+  LL contribution to SD:
+       -0.9969980786        1.0762093123       -0.0000000000
+        1.0773553565        1.2354056876        0.0000000000
+        0.0000000000        0.0000000000       -0.2380910184
+
+  SS contribution to SD:
+       -0.0004795617        0.0001609642       -0.0000000000
+        0.0001050117       -0.0002465334        0.0000000000
+        0.0000000000       -0.0000000000       -0.0004299784
+
+  Gordon decomposition, a(I,S) [MHz]:
+        0.8047068428        1.0763527087        0.0000000000
+        1.0770852558        3.0338491555       -0.0000000000
+       -0.0000000002        0.0000000001        1.5649463004
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.369571           -0.9271    0.3747   -0.0000
+  a_22              1.564946           -0.0000    0.0000    1.0000
+  a_33              3.468985           -0.3747   -0.9271   -0.0000
+  a_iso             1.801167
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         1.805            1.805            1.805            1.806
+  PSO       -0.004           -0.003           -0.001           -0.007
+  SD        -0.000           -1.432           -0.239            1.670
+  SUM        1.801            0.370            1.565            3.469
+ ---------------------------------------------------------------------
+
+
+================================
+HFCC FOR NUCLEUS # 14 = Hydrogen
+================================
+::
+
+  g-factor           =    5.585695
+  Atomic mass        =    1.007825
+  Atomic mass number =    1
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                             2.1643074   0.9884677   0.0000000
+
+  Fermi-contact term (FC):
+       -0.6583023224       -0.0000635798        0.0000000001
+        0.0000747117       -0.6586902841        0.0000000000
+        0.0000000001        0.0000000000       -0.6580519755
+
+  Paramagnetic spin orbit term (PSO):
+       -0.0000323999        0.0019285958        0.0000000000
+        0.0011005171        0.0014880287        0.0000000000
+       -0.0000000000       -0.0000000000       -0.0001929314
+
+  Spin dipolar term (SD):
+        0.1241027646        0.0207738153        0.0000000000
+        0.0209185152       -0.1023715255       -0.0000000000
+        0.0000000000       -0.0000000000       -0.0218470850
+
+  First relativistic term (R1):
+        0.0002237758        0.0000508943        0.0000000000
+       -0.0001334943        0.0002858366        0.0000000000
+        0.0000000000        0.0000000000        0.0004853477
+
+  Second relativistic term (R2):
+        0.0002270722       -0.0002850315       -0.0000000000
+       -0.0001753682       -0.0000538106       -0.0000000000
+        0.0000000000        0.0000000000       -0.0002056852
+
+  a(I,S) [MHz]:
+       -0.5337811097        0.0224046941        0.0000000001
+        0.0217848815       -0.7593417549        0.0000000000
+        0.0000000001        0.0000000000       -0.6798123295
+
+  A(I,I) = a*a^T:
+        0.2854242434       -0.0286411780       -0.0000000001
+       -0.0286411780        0.5770744818       -0.0000000001
+       -0.0000000001       -0.0000000001        0.4621448033
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.531637            0.9953    0.0968    0.0000
+  a_22              0.679812           -0.0000    0.0000    1.0000
+  a_33              0.761486           -0.0968    0.9953   -0.0000
+  a_iso             0.657645
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:  -2.75E-01
+  Because the determinant is negative one must modify the a-values
+  such that a_11*a_22*a_33 < 0, f.e. modify a_11 --> -a_11
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -0.761486            0.0966   -0.9953    0.0000
+  a_22             -0.679812           -0.0000    0.0000    1.0000
+  a_33             -0.531637           -0.9953   -0.0966   -0.0000
+  a_iso            -0.657645
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -0.658           -0.659           -0.658           -0.658
+  PSO        0.000            0.001           -0.000            0.000
+  SD        -0.000           -0.104           -0.022            0.126
+  R1         0.000            0.000            0.000            0.000
+  R2        -0.000           -0.000           -0.000            0.000
+  REL        0.000            0.000            0.000            0.000
+  SUM       -0.658           -0.761           -0.680           -0.532
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+       -0.6583856442       -0.0000619121        0.0000000000
+        0.0000712528       -0.6587751454        0.0000000000
+        0.0000000001        0.0000000000       -0.6581704272
+
+  LL contribution to FC:
+       -0.6584051034       -0.0000618126        0.0000000000
+        0.0000713598       -0.6587943312        0.0000000000
+        0.0000000001        0.0000000000       -0.6581539766
+
+  SS contribution to FC:
+        0.0000194592       -0.0000000995       -0.0000000000
+       -0.0000001070        0.0000191858        0.0000000000
+        0.0000000000        0.0000000000       -0.0000164506
+
+  Gordon decomposition, PSO term:
+       -0.0000928156        0.0020457402        0.0000000000
+        0.0013793953        0.0018100862       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.0001271366
+
+  LL contribution to PSO:
+       -0.0001275208        0.0019704123        0.0000000000
+        0.0013042396        0.0016830793       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.0002580338
+
+  SS contribution to PSO:
+        0.0000347052        0.0000753279       -0.0000000000
+        0.0000751557        0.0001270069       -0.0000000000
+       -0.0000000000       -0.0000000000        0.0001308972
+
+  Gordon decomposition, SD term:
+        0.1243640737        0.0206582811        0.0000000000
+        0.0207919941       -0.1023134465       -0.0000000000
+        0.0000000000       -0.0000000000       -0.0218264735
+
+  LL contribution to SD:
+        0.1242220970        0.0206887136        0.0000000000
+        0.0208360270       -0.1024089832       -0.0000000000
+        0.0000000000       -0.0000000000       -0.0219290831
+
+  SS contribution to SD:
+        0.0001419767       -0.0000304324       -0.0000000000
+       -0.0000440329        0.0000955367       -0.0000000000
+       -0.0000000000       -0.0000000000        0.0001026095
+
+  Gordon decomposition, a(I,S) [MHz]:
+       -0.5341143861        0.0226421092        0.0000000000
+        0.0222426422       -0.7592785056        0.0000000000
+        0.0000000001        0.0000000000       -0.6801240373
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -0.761494           -0.0982    0.9952   -0.0000
+  a_22             -0.680124           -0.0000    0.0000    1.0000
+  a_33             -0.531899            0.9952    0.0982    0.0000
+  a_iso            -0.657839
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -0.658           -0.659           -0.658           -0.658
+  PSO        0.001            0.001           -0.000            0.000
+  SD         0.000           -0.104           -0.022            0.126
+  SUM       -0.658           -0.761           -0.680           -0.532
+ ---------------------------------------------------------------------
+
+
+================================
+HFCC FOR NUCLEUS # 15 = Hydrogen
+================================
+::
+
+  g-factor           =    5.585695
+  Atomic mass        =    1.007825
+  Atomic mass number =    1
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                             0.2225738   3.4072520   0.0000000
+
+  Fermi-contact term (FC):
+        1.4606641681       -0.0003416174       -0.0000000000
+        0.0003435311        1.4611625137       -0.0000000000
+        0.0000000002       -0.0000000002        1.4602592789
+
+  Paramagnetic spin orbit term (PSO):
+       -0.0015890234       -0.0023355099       -0.0000000000
+       -0.0012680730       -0.0036361233       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.0003971507
+
+  Spin dipolar term (SD):
+       -0.6747197398        0.8404486021        0.0000000000
+        0.8401386023        0.6435215604       -0.0000000000
+       -0.0000000000        0.0000000000        0.0314318135
+
+  First relativistic term (R1):
+        0.0001728010        0.0000765907        0.0000000000
+        0.0000315920       -0.0000510751       -0.0000000000
+        0.0000000000        0.0000000000        0.0000732351
+
+  Second relativistic term (R2):
+       -0.0001548965       -0.0003528914       -0.0000000000
+       -0.0001216350       -0.0002998908       -0.0000000000
+       -0.0000000000       -0.0000000000        0.0003739750
+
+  a(I,S) [MHz]:
+        0.7843733094        0.8374951741       -0.0000000000
+        0.8391240174        2.1006969849       -0.0000000000
+        0.0000000002       -0.0000000002        1.4917411517
+
+  A(I,I) = a*a^T:
+        1.3166396551        2.4175100696       -0.0000000001
+        2.4175100696        5.1170569390       -0.0000000004
+       -0.0000000001       -0.0000000004        2.2252916637
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.376731            0.8994   -0.4371   -0.0000
+  a_22              1.491741           -0.0000   -0.0000   -1.0000
+  a_33              2.508340            0.4371    0.8994   -0.0000
+  a_iso             1.458937
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   1.41E+00
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.376730           -0.8993    0.4373    0.0000
+  a_22              1.491741            0.0000    0.0000    1.0000
+  a_33              2.508340           -0.4373   -0.8993    0.0000
+  a_iso             1.458937
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         1.461            1.461            1.460            1.461
+  PSO       -0.002           -0.001           -0.000           -0.005
+  SD         0.000           -1.084            0.031            1.052
+  R1         0.000            0.000            0.000            0.000
+  R2        -0.000            0.000            0.000           -0.000
+  REL        0.000            0.000            0.000           -0.000
+  SUM        1.459            0.377            1.492            2.508
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+        1.4608764888       -0.0003415574        0.0000000000
+        0.0003436535        1.4613742963       -0.0000000000
+        0.0000000002       -0.0000000003        1.4605491252
+
+  LL contribution to FC:
+        1.4609168383       -0.0003393818        0.0000000000
+        0.0003458484        1.4614174981       -0.0000000000
+        0.0000000002       -0.0000000003        1.4605104946
+
+  SS contribution to FC:
+       -0.0000403495       -0.0000021756        0.0000000000
+       -0.0000021949       -0.0000432018        0.0000000000
+       -0.0000000000       -0.0000000000        0.0000386307
+
+  Gordon decomposition, PSO term:
+       -0.0013246350       -0.0030885916       -0.0000000000
+       -0.0019812941       -0.0041722517       -0.0000000000
+        0.0000000000        0.0000000000       -0.0008901827
+
+  LL contribution to PSO:
+       -0.0012015066       -0.0028653402       -0.0000000000
+       -0.0017568662       -0.0037222488       -0.0000000000
+        0.0000000000        0.0000000000       -0.0006159753
+
+  SS contribution to PSO:
+       -0.0001231284       -0.0002232514        0.0000000000
+       -0.0002244279       -0.0004500029        0.0000000000
+       -0.0000000000        0.0000000000       -0.0002742074
+
+  Gordon decomposition, SD term:
+       -0.6755003469        0.8409522275        0.0000000000
+        0.8406198239        0.6434612603       -0.0000000000
+       -0.0000000000        0.0000000000        0.0313374324
+
+  LL contribution to SD:
+       -0.6751150050        0.8408306397        0.0000000000
+        0.8405153927        0.6436821304       -0.0000000000
+       -0.0000000000        0.0000000000        0.0316666338
+
+  SS contribution to SD:
+       -0.0003853419        0.0001215878        0.0000000000
+        0.0001044312       -0.0002208701        0.0000000000
+       -0.0000000000        0.0000000000       -0.0003292014
+
+  Gordon decomposition, a(I,S) [MHz]:
+        0.7840515069        0.8375220786       -0.0000000000
+        0.8389821832        2.1006633049       -0.0000000000
+        0.0000000002       -0.0000000002        1.4909963749
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.376509           -0.8993    0.4372    0.0000
+  a_22              1.490996            0.0000    0.0000    1.0000
+  a_33              2.508206           -0.4372   -0.8993    0.0000
+  a_iso             1.458570
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         1.461            1.461            1.461            1.461
+  PSO       -0.002            0.000           -0.001           -0.006
+  SD        -0.000           -1.085            0.031            1.053
+  SUM        1.459            0.377            1.491            2.508
+ ---------------------------------------------------------------------
+
+
+================================
+HFCC FOR NUCLEUS # 16 = Hydrogen
+================================
+::
+
+  g-factor           =    5.585695
+  Atomic mass        =    1.007825
+  Atomic mass number =    1
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                            -1.6856154  -5.8368549   0.0000000
+
+  Fermi-contact term (FC):
+       36.2320350940       -0.7033399704       -0.0000000000
+        0.7037477720       36.2289088723       -0.0000000000
+        0.0000000002        0.0000000001       36.2435138564
+
+  Paramagnetic spin orbit term (PSO):
+       -0.0108461623        0.0367975079        0.0000000000
+        0.0401033387       -0.0104050275       -0.0000000000
+        0.0000000000        0.0000000000        0.1182089895
+
+  Spin dipolar term (SD):
+       11.0795947016      -23.5732985774       -0.0000000000
+      -23.5894214608       20.1453887229       -0.0000000000
+       -0.0000000001       -0.0000000000      -31.2257366845
+
+  First relativistic term (R1):
+       -0.0039099927       -0.0034255183       -0.0000000000
+       -0.0299666037        0.0103350341        0.0000000000
+        0.0000000000       -0.0000000000        0.0077020629
+
+  Second relativistic term (R2):
+       -0.0002330314        0.0179861017        0.0000000000
+        0.0011098308        0.0014429116       -0.0000000000
+        0.0000000000        0.0000000000        0.0017143080
+
+  a(I,S) [MHz]:
+       47.2966406093      -24.2252804564       -0.0000000000
+      -22.8744271230       56.3756705134       -0.0000000000
+        0.0000000001        0.0000000001        5.1454025323
+
+  A(I,I) = a*a^T:
+     2823.8364261143    -2447.5999878841        0.0000000053
+    -2447.5999878841     3701.4556420375       -0.0000000005
+        0.0000000053       -0.0000000005       26.4751672198
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              5.145403           -0.0000   -0.0000    1.0000
+  a_22             27.857170           -0.7670   -0.6417   -0.0000
+  a_33             75.823942            0.6417   -0.7670    0.0000
+  a_iso            36.275505
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   1.09E+04
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              5.145403           -0.0000   -0.0000    1.0000
+  a_22             27.852769            0.7711    0.6367    0.0000
+  a_33             75.819542           -0.6367    0.7711   -0.0000
+  a_iso            36.272571
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        36.235           36.244           36.231           36.230
+  PSO        0.032            0.118            0.027           -0.048
+  SD        -0.000          -31.226           -8.401           39.626
+  R1         0.005            0.008           -0.015            0.021
+  R2         0.001            0.002            0.010           -0.009
+  REL        0.006            0.009           -0.005            0.012
+  SUM       36.273            5.145           27.853           75.820
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+       36.2474704171       -0.6886659685       -0.0000000000
+        0.6863338287       36.2433269941       -0.0000000000
+        0.0000000002        0.0000000001       36.2591735037
+
+  LL contribution to FC:
+       36.2467676590       -0.6873020833       -0.0000000000
+        0.6876970552       36.2436493333       -0.0000000000
+        0.0000000002        0.0000000001       36.2581367546
+
+  SS contribution to FC:
+        0.0007027582       -0.0013638851       -0.0000000000
+       -0.0013632265       -0.0003223391        0.0000000000
+        0.0000000000        0.0000000000        0.0010367491
+
+  Gordon decomposition, PSO term:
+       -0.0172456152        0.0570726783        0.0000000000
+        0.0526206113       -0.0388745440       -0.0000000000
+        0.0000000000        0.0000000000        0.1342750093
+
+  LL contribution to PSO:
+       -0.0129050815        0.0513711681        0.0000000000
+        0.0470994412       -0.0237491298       -0.0000000000
+        0.0000000000        0.0000000000        0.1306980032
+
+  SS contribution to PSO:
+       -0.0043405337        0.0057015102        0.0000000000
+        0.0055211701       -0.0151254142        0.0000000000
+       -0.0000000000       -0.0000000000        0.0035770061
+
+  Gordon decomposition, SD term:
+       11.0762296372      -23.5949288706       -0.0000000000
+      -23.6047655391       20.1559719754       -0.0000000000
+       -0.0000000001       -0.0000000000      -31.2459955155
+
+  LL contribution to SD:
+       11.0811039105      -23.5905641281       -0.0000000000
+      -23.6041758944       20.1552124142       -0.0000000000
+       -0.0000000001       -0.0000000000      -31.2370566644
+
+  SS contribution to SD:
+       -0.0048742733       -0.0043647424       -0.0000000000
+       -0.0005896446        0.0007595611       -0.0000000000
+       -0.0000000000       -0.0000000000       -0.0089388511
+
+  Gordon decomposition, a(I,S) [MHz]:
+       47.3064544391      -24.2265221607       -0.0000000000
+      -22.8658110991       56.3604244255       -0.0000000000
+        0.0000000001        0.0000000000        5.1474529975
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              5.147453           -0.0000   -0.0000    1.0000
+  a_22             27.856043            0.7710    0.6369    0.0000
+  a_33             75.810836           -0.6369    0.7710   -0.0000
+  a_iso            36.271444
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        36.250           36.259           36.245           36.246
+  PSO        0.026            0.134            0.028           -0.084
+  SD        -0.005          -31.246           -8.416           39.649
+  SUM       36.271            5.147           27.856           75.811
+ ---------------------------------------------------------------------
+
+
+==============================
+HFCC FOR NUCLEUS # 17 = Carbon
+==============================
+::
+
+  g-factor           =    1.404824
+  Atomic mass        =   13.003355
+  Atomic mass number =   13
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                             2.3814697   3.6973314   0.0000000
+
+  Fermi-contact term (FC):
+        1.8974691825        0.0001526074       -0.0000000001
+        0.0001158393        1.8983216075        0.0000000006
+        0.0000000027        0.0000000001        1.8966504448
+
+  Paramagnetic spin orbit term (PSO):
+       -0.0061399375        0.0002868846       -0.0000000003
+        0.0009296941       -0.0060171713       -0.0000000001
+       -0.0000000000       -0.0000000000       -0.0014591243
+
+  Spin dipolar term (SD):
+       -0.4860117119       -0.0596296939        0.0000000001
+       -0.0595718109       -0.6065240798       -0.0000000002
+       -0.0000000002       -0.0000000005        1.0921641092
+
+  First relativistic term (R1):
+       -0.0134873625        0.0000172579       -0.0000000002
+       -0.0000030307       -0.0134725082       -0.0000000004
+       -0.0000000001       -0.0000000001       -0.0131998740
+
+  Second relativistic term (R2):
+        0.0009312065       -0.0000037202        0.0000000000
+        0.0000120542        0.0008919650        0.0000000000
+        0.0000000000        0.0000000000        0.0019576155
+
+  a(I,S) [MHz]:
+        1.3927613772       -0.0591766643       -0.0000000005
+       -0.0585172539        1.2731998132       -0.0000000000
+        0.0000000032        0.0000000020        2.9761131710
+
+  A(I,I) = a*a^T:
+        1.9432861313       -0.1568442890        0.0000000029
+       -0.1568442890        1.6244620332        0.0000000023
+        0.0000000029        0.0000000023        8.8572496068
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              1.249096            0.3789    0.9254   -0.0000
+  a_22              1.416866            0.9254   -0.3789   -0.0000
+  a_33              2.976113            0.0000    0.0000    1.0000
+  a_iso             1.880691
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   5.27E+00
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              1.249096            0.3790    0.9254   -0.0000
+  a_22              1.416866            0.9254   -0.3790   -0.0000
+  a_33              2.976113            0.0000    0.0000    1.0000
+  a_iso             1.880691
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         1.897            1.898            1.897            1.897
+  PSO       -0.005           -0.006           -0.007           -0.001
+  SD        -0.000           -0.631           -0.462            1.092
+  R1        -0.013           -0.013           -0.013           -0.013
+  R2         0.001            0.001            0.001            0.002
+  REL       -0.012           -0.013           -0.013           -0.011
+  SUM        1.881            1.249            1.417            2.976
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+        1.9208849996       -0.0000083816        0.0000000002
+       -0.0000316729        1.9216688815        0.0000000011
+        0.0000000033        0.0000000008        1.9171552457
+
+  LL contribution to FC:
+        1.9192041971        0.0001481291        0.0000000002
+        0.0001250706        1.9200673140        0.0000000011
+        0.0000000033        0.0000000008        1.9183776185
+
+  SS contribution to FC:
+        0.0016808025       -0.0001565107       -0.0000000000
+       -0.0001567435        0.0016015676        0.0000000000
+        0.0000000000        0.0000000000       -0.0012223728
+
+  Gordon decomposition, PSO term:
+       -0.0284429725        0.0004011913       -0.0000000002
+        0.0010996031       -0.0282249850       -0.0000000001
+       -0.0000000001       -0.0000000000       -0.0221607960
+
+  LL contribution to PSO:
+       -0.0078664018        0.0003458337       -0.0000000003
+        0.0010440777       -0.0076911613       -0.0000000001
+       -0.0000000000       -0.0000000000       -0.0018546316
+
+  SS contribution to PSO:
+       -0.0205765707        0.0000553576        0.0000000000
+        0.0000555254       -0.0205338237       -0.0000000000
+       -0.0000000001       -0.0000000000       -0.0203061644
+
+  Gordon decomposition, SD term:
+       -0.5062161883       -0.0595432116        0.0000000001
+       -0.0594853063       -0.6267400675       -0.0000000002
+       -0.0000000003       -0.0000000005        1.0752545678
+
+  LL contribution to SD:
+       -0.4869137687       -0.0595532961        0.0000000001
+       -0.0594931060       -0.6074226886       -0.0000000002
+       -0.0000000002       -0.0000000005        1.0939580870
+
+  SS contribution to SD:
+       -0.0193024196        0.0000100845        0.0000000000
+        0.0000077997       -0.0193173789       -0.0000000000
+       -0.0000000001       -0.0000000000       -0.0187035192
+
+  Gordon decomposition, a(I,S) [MHz]:
+        1.3862258388       -0.0591504019        0.0000000000
+       -0.0584173761        1.2667038290        0.0000000008
+        0.0000000030        0.0000000003        2.9702490176
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              1.242638           -0.3789   -0.9254    0.0000
+  a_22              1.410292            0.9254   -0.3789   -0.0000
+  a_33              2.970249            0.0000    0.0000    1.0000
+  a_iso             1.874393
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         1.920            1.922            1.921            1.917
+  PSO       -0.026           -0.028           -0.029           -0.022
+  SD        -0.019           -0.651           -0.482            1.075
+  SUM        1.874            1.243            1.410            2.970
+ ---------------------------------------------------------------------
+
+
+================================
+HFCC FOR NUCLEUS # 18 = Hydrogen
+================================
+::
+
+  g-factor           =    5.585695
+  Atomic mass        =    1.007825
+  Atomic mass number =    1
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                             3.3420437   3.1609589   0.0000000
+
+  Fermi-contact term (FC):
+       -0.3691560755       -0.0002132248       -0.0000000000
+        0.0002152466       -0.3692781669       -0.0000000000
+       -0.0000000013        0.0000000006       -0.3688424668
+
+  Paramagnetic spin orbit term (PSO):
+       -0.0001494810        0.0002734768       -0.0000000000
+        0.0009895692        0.0007759060        0.0000000001
+       -0.0000000000       -0.0000000000       -0.0000326899
+
+  Spin dipolar term (SD):
+       -0.0292298820       -0.0326902636       -0.0000000000
+       -0.0326723121       -0.0677523871        0.0000000000
+       -0.0000000001       -0.0000000000        0.0969423024
+
+  First relativistic term (R1):
+        0.0001311211        0.0000246286       -0.0000000000
+       -0.0000952947        0.0001611405       -0.0000000000
+        0.0000000000        0.0000000000        0.0002616800
+
+  Second relativistic term (R2):
+        0.0001023441       -0.0001660189        0.0000000000
+       -0.0001034751       -0.0000712069        0.0000000000
+        0.0000000000        0.0000000000       -0.0001002243
+
+  a(I,S) [MHz]:
+       -0.3983019733       -0.0327714018       -0.0000000001
+       -0.0316662661       -0.4361647144        0.0000000001
+       -0.0000000014        0.0000000006       -0.2717713985
+
+  A(I,I) = a*a^T:
+        0.1597184267        0.0269064654        0.0000000006
+        0.0269064654        0.1912424105       -0.0000000002
+        0.0000000006       -0.0000000002        0.0738596930
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.271771           -0.0000    0.0000    1.0000
+  a_22              0.379865           -0.8676    0.4973   -0.0000
+  a_33              0.454603           -0.4973   -0.8676   -0.0000
+  a_iso             0.368746
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:  -4.69E-02
+  Because the determinant is negative one must modify the a-values
+  such that a_11*a_22*a_33 < 0, f.e. modify a_11 --> -a_11
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -0.454602           -0.4967   -0.8679   -0.0000
+  a_22             -0.379864           -0.8679    0.4967   -0.0000
+  a_33             -0.271771           -0.0000    0.0000    1.0000
+  a_iso            -0.368746
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -0.369           -0.369           -0.369           -0.369
+  PSO        0.000            0.001           -0.000           -0.000
+  SD        -0.000           -0.086           -0.011            0.097
+  R1         0.000            0.000            0.000            0.000
+  R2        -0.000           -0.000            0.000           -0.000
+  REL        0.000           -0.000            0.000            0.000
+  SUM       -0.369           -0.455           -0.380           -0.272
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+       -0.3691969676       -0.0002114645       -0.0000000000
+        0.0002121905       -0.3693204451       -0.0000000000
+       -0.0000000013        0.0000000006       -0.3689036506
+
+  LL contribution to FC:
+       -0.3692084484       -0.0002111981       -0.0000000000
+        0.0002124706       -0.3693313540       -0.0000000000
+       -0.0000000013        0.0000000006       -0.3688944119
+
+  SS contribution to FC:
+        0.0000114808       -0.0000002665       -0.0000000000
+       -0.0000002800        0.0000109089       -0.0000000000
+        0.0000000000       -0.0000000000       -0.0000092386
+
+  Gordon decomposition, PSO term:
+       -0.0001255726        0.0003108182       -0.0000000000
+        0.0011756605        0.0009521271        0.0000000001
+        0.0000000000        0.0000000000       -0.0000090777
+
+  LL contribution to PSO:
+       -0.0001515198        0.0002646708       -0.0000000000
+        0.0011299512        0.0008910585        0.0000000001
+        0.0000000000        0.0000000000       -0.0000756753
+
+  SS contribution to PSO:
+        0.0000259472        0.0000461474        0.0000000000
+        0.0000457094        0.0000610686        0.0000000000
+        0.0000000000       -0.0000000000        0.0000665975
+
+  Gordon decomposition, SD term:
+       -0.0291216128       -0.0327729720       -0.0000000000
+       -0.0327607009       -0.0677244482        0.0000000000
+       -0.0000000001       -0.0000000000        0.0969875500
+
+  LL contribution to SD:
+       -0.0291930633       -0.0327537836       -0.0000000000
+       -0.0327344939       -0.0677783519        0.0000000000
+       -0.0000000001       -0.0000000000        0.0969314056
+
+  SS contribution to SD:
+        0.0000714505       -0.0000191883       -0.0000000000
+       -0.0000262071        0.0000539037        0.0000000000
+        0.0000000000       -0.0000000000        0.0000561443
+
+  Gordon decomposition, a(I,S) [MHz]:
+       -0.3984441530       -0.0326736183       -0.0000000001
+       -0.0313728499       -0.4360927662        0.0000000001
+       -0.0000000014        0.0000000006       -0.2719251783
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -0.454415           -0.4966   -0.8680   -0.0000
+  a_22             -0.380122           -0.8680    0.4966   -0.0000
+  a_33             -0.271925           -0.0000    0.0000    1.0000
+  a_iso            -0.368821
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -0.369           -0.369           -0.369           -0.369
+  PSO        0.000            0.001           -0.001           -0.000
+  SD         0.000           -0.086           -0.010            0.097
+  SUM       -0.369           -0.454           -0.380           -0.272
+ ---------------------------------------------------------------------
+
+
+==============================
+HFCC FOR NUCLEUS # 19 = Carbon
+==============================
+::
+
+  g-factor           =    1.404824
+  Atomic mass        =   13.003355
+  Atomic mass number =   13
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                             2.3834166   5.0544524   0.0000000
+
+  Fermi-contact term (FC):
+       -1.6308182099        0.0005284555        0.0000000001
+       -0.0006728424       -1.6311661590        0.0000000004
+        0.0000000014        0.0000000017       -1.6304285568
+
+  Paramagnetic spin orbit term (PSO):
+        0.0156879765       -0.0006451737       -0.0000000000
+       -0.0014028427        0.0155050653        0.0000000005
+       -0.0000000000       -0.0000000000        0.0011241408
+
+  Spin dipolar term (SD):
+        1.7331661888       -0.0107573041       -0.0000000004
+       -0.0098081170        1.8162139257       -0.0000000002
+       -0.0000000004        0.0000000006       -3.5486349855
+
+  First relativistic term (R1):
+        0.0131596456        0.0000126902        0.0000000001
+       -0.0000119146        0.0131489632       -0.0000000002
+        0.0000000001        0.0000000001        0.0121899995
+
+  Second relativistic term (R2):
+       -0.0024357640       -0.0000532238        0.0000000000
+       -0.0000247954       -0.0024461748       -0.0000000000
+        0.0000000000        0.0000000000       -0.0057991535
+
+  a(I,S) [MHz]:
+        0.1287598370       -0.0109145559       -0.0000000002
+       -0.0119205121        0.2112556205        0.0000000005
+        0.0000000018        0.0000000037       -5.1715485534
+
+  A(I,I) = a*a^T:
+        0.0166982232       -0.0038406445        0.0000000014
+       -0.0038406445        0.0447710358       -0.0000000020
+        0.0000000014       -0.0000000020       26.7449144403
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.127210            0.9911    0.1331   -0.0000
+  a_22              0.212807           -0.1331    0.9911    0.0000
+  a_33              5.171549            0.0000   -0.0000    1.0000
+  a_iso             1.837188
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:  -1.40E-01
+  Because the determinant is negative one must modify the a-values
+  such that a_11*a_22*a_33 < 0, f.e. modify a_11 --> -a_11
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -5.171549           -0.0000   -0.0000    1.0000
+  a_22              0.127209            0.9909    0.1346    0.0000
+  a_33              0.212807           -0.1346    0.9909    0.0000
+  a_iso            -1.610511
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -1.631           -1.630           -1.631           -1.631
+  PSO        0.011            0.001            0.015            0.016
+  SD         0.000           -3.549            1.732            1.817
+  R1         0.013            0.012            0.013            0.013
+  R2        -0.004           -0.006           -0.002           -0.002
+  REL        0.009            0.006            0.011            0.011
+  SUM       -1.611           -5.172            0.127            0.213
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+       -1.6550443883        0.0005361200        0.0000000000
+       -0.0006844180       -1.6553912567        0.0000000005
+        0.0000000015        0.0000000016       -1.6444858858
+
+  LL contribution to FC:
+       -1.6497917092        0.0005363586        0.0000000000
+       -0.0006824774       -1.6501441055        0.0000000005
+        0.0000000015        0.0000000016       -1.6493979676
+
+  SS contribution to FC:
+       -0.0052526791       -0.0000002386        0.0000000000
+       -0.0000019406       -0.0052471512        0.0000000000
+        0.0000000000       -0.0000000000        0.0049120818
+
+  Gordon decomposition, PSO term:
+        0.0396524261       -0.0006795413       -0.0000000000
+       -0.0013971666        0.0395072555        0.0000000005
+       -0.0000000001       -0.0000000001        0.0193062617
+
+  LL contribution to PSO:
+        0.0208887135       -0.0006771991       -0.0000000000
+       -0.0014079566        0.0207527595        0.0000000005
+       -0.0000000000       -0.0000000000        0.0013976689
+
+  SS contribution to PSO:
+        0.0187637126       -0.0000023422        0.0000000000
+        0.0000107900        0.0187544961       -0.0000000000
+       -0.0000000000       -0.0000000000        0.0179085928
+
+  Gordon decomposition, SD term:
+        1.7516833353       -0.0107635879       -0.0000000004
+       -0.0098018186        1.8347565406       -0.0000000002
+       -0.0000000005        0.0000000005       -3.5413521930
+
+  LL contribution to SD:
+        1.7362100893       -0.0107584074       -0.0000000004
+       -0.0098065893        1.8192750670       -0.0000000002
+       -0.0000000004        0.0000000006       -3.5547217688
+
+  SS contribution to SD:
+        0.0154732460       -0.0000051805        0.0000000000
+        0.0000047707        0.0154814736       -0.0000000000
+       -0.0000000000       -0.0000000000        0.0133695758
+
+  Gordon decomposition, a(I,S) [MHz]:
+        0.1362913732       -0.0109070092       -0.0000000004
+       -0.0118834032        0.2188725395        0.0000000008
+        0.0000000010        0.0000000021       -5.1665318171
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11             -5.166532           -0.0000   -0.0000    1.0000
+  a_22              0.134748            0.9910    0.1342    0.0000
+  a_33              0.220416           -0.1342    0.9910    0.0000
+  a_iso            -1.603789
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC        -1.652           -1.644           -1.655           -1.655
+  PSO        0.033            0.019            0.039            0.040
+  SD         0.015           -3.541            1.750            1.836
+  SUM       -1.604           -5.167            0.135            0.220
+ ---------------------------------------------------------------------
+
+
+================================
+HFCC FOR NUCLEUS # 20 = Hydrogen
+================================
+::
+
+  g-factor           =    5.585695
+  Atomic mass        =    1.007825
+  Atomic mass number =    1
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                             1.4478957   5.6269830   0.0000000
+
+  Fermi-contact term (FC):
+        1.2223104530       -0.0006048239       -0.0000000000
+        0.0006087873        1.2226833822        0.0000000000
+        0.0000000010        0.0000000000        1.2220505675
+
+  Paramagnetic spin orbit term (PSO):
+       -0.0020840591       -0.0009687264       -0.0000000001
+       -0.0009453287       -0.0030045668       -0.0000000000
+        0.0000000000        0.0000000000       -0.0002237775
+
+  Spin dipolar term (SD):
+       -0.4444030939        0.7772873799        0.0000000001
+        0.7776623677        0.4124865723       -0.0000000001
+       -0.0000000001       -0.0000000000        0.0320415057
+
+  First relativistic term (R1):
+        0.0001203524        0.0000329879        0.0000000000
+        0.0000453259       -0.0000776072        0.0000000000
+        0.0000000000        0.0000000000        0.0000050771
+
+  Second relativistic term (R2):
+       -0.0001205318       -0.0002591476       -0.0000000000
+       -0.0000799129       -0.0002759810       -0.0000000000
+       -0.0000000000       -0.0000000000        0.0002682849
+
+  a(I,S) [MHz]:
+        0.7758231207        0.7754876699       -0.0000000000
+        0.7772912393        1.6318117996       -0.0000000001
+        0.0000000009        0.0000000000        1.2541416578
+
+  A(I,I) = a*a^T:
+        1.2032826409        1.8684904452        0.0000000007
+        1.8684904452        3.2669914200        0.0000000006
+        0.0000000007        0.0000000006        1.5728712978
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.317274            0.8612   -0.5082   -0.0000
+  a_22              1.254142           -0.0000    0.0000   -1.0000
+  a_33              2.090362            0.5082    0.8612    0.0000
+  a_iso             1.220592
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   8.32E-01
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.317274           -0.8610    0.5085    0.0000
+  a_22              1.254142            0.0000   -0.0000    1.0000
+  a_33              2.090361           -0.5085   -0.8610   -0.0000
+  a_iso             1.220592
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         1.222            1.222            1.222            1.223
+  PSO       -0.002           -0.001           -0.000           -0.004
+  SD         0.000           -0.904            0.032            0.872
+  R1         0.000            0.000            0.000            0.000
+  R2        -0.000           -0.000            0.000           -0.000
+  REL       -0.000            0.000            0.000           -0.000
+  SUM        1.221            0.317            1.254            2.090
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+        1.2224821002       -0.0006055470       -0.0000000000
+        0.0006092336        1.2228536440        0.0000000000
+        0.0000000010        0.0000000000        1.2222915960
+
+  LL contribution to FC:
+        1.2225182239       -0.0006035162       -0.0000000000
+        0.0006113175        1.2228920406        0.0000000000
+        0.0000000010        0.0000000000        1.2222568318
+
+  SS contribution to FC:
+       -0.0000361237       -0.0000020309       -0.0000000000
+       -0.0000020839       -0.0000383966        0.0000000000
+       -0.0000000000        0.0000000000        0.0000347642
+
+  Gordon decomposition, PSO term:
+       -0.0020224082       -0.0015509265       -0.0000000001
+       -0.0016571888       -0.0032647070       -0.0000000000
+       -0.0000000000        0.0000000000       -0.0005927388
+
+  LL contribution to PSO:
+       -0.0019001037       -0.0013437228       -0.0000000001
+       -0.0014491023       -0.0029218280       -0.0000000000
+       -0.0000000000        0.0000000000       -0.0003610562
+
+  SS contribution to PSO:
+       -0.0001223045       -0.0002072037       -0.0000000000
+       -0.0002080865       -0.0003428790       -0.0000000000
+       -0.0000000000        0.0000000000       -0.0002316826
+
+  Gordon decomposition, SD term:
+       -0.4449895970        0.7777407560        0.0000000001
+        0.7780933881        0.4123673060       -0.0000000001
+       -0.0000000001       -0.0000000000        0.0319717307
+
+  LL contribution to SD:
+       -0.4446816340        0.7776334572        0.0000000001
+        0.7779913312        0.4125641907       -0.0000000001
+       -0.0000000001       -0.0000000000        0.0322425855
+
+  SS contribution to SD:
+       -0.0003079630        0.0001072988        0.0000000000
+        0.0001020569       -0.0001968847       -0.0000000000
+       -0.0000000000        0.0000000000       -0.0002708548
+
+  Gordon decomposition, a(I,S) [MHz]:
+        0.7754700950        0.7755842825       -0.0000000000
+        0.7770454329        1.6319562430       -0.0000000001
+        0.0000000009       -0.0000000000        1.2536705878
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.317115           -0.8611    0.5084    0.0000
+  a_22              1.253671            0.0000   -0.0000    1.0000
+  a_33              2.090312           -0.5084   -0.8611   -0.0000
+  a_iso             1.220366
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         1.223            1.223            1.222            1.223
+  PSO       -0.002           -0.001           -0.001           -0.004
+  SD        -0.000           -0.905            0.032            0.872
+  SUM        1.220            0.317            1.254            2.090
+ ---------------------------------------------------------------------
+
+
+================================
+HFCC FOR NUCLEUS # 21 = Hydrogen
+================================
+::
+
+  g-factor           =    5.585695
+  Atomic mass        =    1.007825
+  Atomic mass number =    1
+  POSITION OF THE NUCLEUS (A)   r_x         r_y         r_z
+                             3.3146857   5.6291938   0.0000000
+
+  Fermi-contact term (FC):
+        1.3051647852        0.0003080270        0.0000000000
+       -0.0001305624        1.3056420223       -0.0000000000
+        0.0000000004        0.0000000013        1.3049864869
+
+  Paramagnetic spin orbit term (PSO):
+       -0.0019787043        0.0003832435        0.0000000001
+        0.0010136368       -0.0033895709        0.0000000000
+       -0.0000000000       -0.0000000000       -0.0002503468
+
+  Spin dipolar term (SD):
+       -0.4729697435       -0.7805915888        0.0000000001
+       -0.7800314161        0.4872050912        0.0000000000
+       -0.0000000001       -0.0000000000       -0.0142189503
+
+  First relativistic term (R1):
+        0.0000921681        0.0000186230        0.0000000000
+       -0.0001178030       -0.0000355893        0.0000000000
+       -0.0000000000       -0.0000000000        0.0000227713
+
+  Second relativistic term (R2):
+       -0.0001416729       -0.0000811686        0.0000000000
+       -0.0000343633       -0.0002484584        0.0000000000
+        0.0000000000        0.0000000000        0.0003196391
+
+  a(I,S) [MHz]:
+        0.8301668326       -0.7799628639        0.0000000001
+       -0.7793005080        1.7891734949        0.0000000000
+        0.0000000003        0.0000000013        1.2908596002
+
+  A(I,I) = a*a^T:
+        1.2975190391       -2.0424383175       -0.0000000006
+       -2.0424383175        3.8084510765        0.0000000022
+       -0.0000000006        0.0000000022        1.6663185073
+
+
+                Principal values of the a-tensor [MHz]
+                ======================================
+
+
+                Symmetrized by the prescription: a*a^T
+                --------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.394384            0.8728    0.4880   -0.0000
+  a_22              1.290860           -0.0000    0.0000   -1.0000
+  a_33              2.224957           -0.4880    0.8728    0.0000
+  a_iso             1.303400
+ ---------------------------------------------------------------------
+  Determinant of the a-tensor:   1.13E+00
+ ---------------------------------------------------------------------
+
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+             This type of symmetrization is only relevant
+                 for the analysis of the pNMR tensors.
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.394384            0.8729    0.4879   -0.0000
+  a_22              1.290860            0.0000   -0.0000    1.0000
+  a_33              2.224956           -0.4879    0.8729    0.0000
+  a_iso             1.303400
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         1.305            1.305            1.305            1.305
+  PSO       -0.002           -0.002           -0.000           -0.004
+  SD         0.000           -0.909           -0.014            0.923
+  R1         0.000            0.000            0.000            0.000
+  R2        -0.000           -0.000            0.000           -0.000
+  REL        0.000           -0.000            0.000           -0.000
+  SUM        1.303            0.394            1.291            2.225
+ ---------------------------------------------------------------------
+
+
+                 Gordon decomposition of the a-tensor
+                 ====================================
+
+  Gordon decomposition, FC term:
+        1.3053453076        0.0003130564       -0.0000000000
+       -0.0001341341        1.3058218359       -0.0000000000
+        0.0000000004        0.0000000014        1.3052442126
+
+  LL contribution to FC:
+        1.3053851919        0.0003106773       -0.0000000000
+       -0.0001364525        1.3058640317       -0.0000000000
+        0.0000000004        0.0000000014        1.3052059246
+
+  SS contribution to FC:
+       -0.0000398843        0.0000023791       -0.0000000000
+        0.0000023184       -0.0000421958        0.0000000000
+       -0.0000000000       -0.0000000000        0.0000382879
+
+  Gordon decomposition, PSO term:
+       -0.0018916276        0.0009050890        0.0000000001
+        0.0017662732       -0.0037636244        0.0000000000
+       -0.0000000000       -0.0000000000       -0.0006241615
+
+  LL contribution to PSO:
+       -0.0017701600        0.0006783440        0.0000000001
+        0.0015400214       -0.0033973066        0.0000000000
+       -0.0000000000       -0.0000000000       -0.0003797652
+
+  SS contribution to PSO:
+       -0.0001214676        0.0002267450       -0.0000000000
+        0.0002262518       -0.0003663178        0.0000000000
+       -0.0000000000       -0.0000000000       -0.0002443964
+
+  Gordon decomposition, SD term:
+       -0.4735937244       -0.7810675256        0.0000000001
+       -0.7804911309        0.4870982038        0.0000000000
+       -0.0000000001       -0.0000000000       -0.0143071093
+
+  LL contribution to SD:
+       -0.4732656529       -0.7809565229        0.0000000001
+       -0.7803744563        0.4873032162        0.0000000000
+       -0.0000000001       -0.0000000000       -0.0140210220
+
+  SS contribution to SD:
+       -0.0003280715       -0.0001110027        0.0000000000
+       -0.0001166746       -0.0002050124        0.0000000000
+       -0.0000000000       -0.0000000000       -0.0002860873
+
+  Gordon decomposition, a(I,S) [MHz]:
+        0.8298599556       -0.7798493802        0.0000000001
+       -0.7788589918        1.7891564153        0.0000000000
+        0.0000000003        0.0000000014        1.2903129418
+
+
+       Principal values of the Gordon decomposed a-tensor [MHz]
+       ========================================================
+
+              Symmetrized by the prescription: (a+a^T)/2
+              ------------------------------------------
+
+  Component         Value                    Principal Axes 
+ ---------------------------------------------------------------------
+  a_11              0.394382            0.8730    0.4878   -0.0000
+  a_22              1.290313            0.0000   -0.0000    1.0000
+  a_33              2.224634           -0.4878    0.8730    0.0000
+  a_iso             1.303110
+ ---------------------------------------------------------------------
+
+              iso               11               22               33
+ ---------------------------------------------------------------------
+  FC         1.305            1.306            1.305            1.306
+  PSO       -0.002           -0.001           -0.001           -0.004
+  SD        -0.000           -0.910           -0.014            0.923
+  SUM        1.303            0.394            1.290            2.225
+ ---------------------------------------------------------------------
+
+
+ ***************************************************
+ * Well, here we are. How does it look for you ??? *
+ ***************************************************
+
+ Total user time: 5m  6.2s
+
+
+
+##############################################################################
+                              Finalization info
+##############################################################################
+ 
+*M*  rank =   0   top mem =           105.679 MB   sub = kramers__analyze_pairs   arr = KSC
+
+ Final time:
+    9:48:59, 22 June, 2026
+
+ Successful termination of ReSpect!
+
+
+real	5m6.192s
+user	46m16.415s
+sys	1m12.458s
